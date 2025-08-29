@@ -1,0 +1,3 @@
+/home/yamin/coding/UIEWebServer/build/CMakeFiles/server.dir
+/home/yamin/coding/UIEWebServer/build/CMakeFiles/edit_cache.dir
+/home/yamin/coding/UIEWebServer/build/CMakeFiles/rebuild_cache.dir

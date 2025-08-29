@@ -1,0 +1,78 @@
+2025-08-29 15:47:31.012873 [info] : ========== Server init ==========
+2025-08-29 15:47:31.012880 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:47:31.012901 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:47:31.012905 [info] : LogSys level: 1
+2025-08-29 15:47:31.012909 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/../resources/
+2025-08-29 15:47:31.012913 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:47:31.012990 [info] : ========== Server start ==========
+2025-08-29 15:47:38.661681 [info] : Client[6](127.0.0.1:32958) in, userCount:1
+2025-08-29 15:47:38.661755 [info] : Client[6] in!
+2025-08-29 15:47:38.663531 [info] : Client[6] quit!
+2025-08-29 15:47:38.663569 [info] : Client[6](127.0.0.1:32958) quit, UserCount:0
+2025-08-29 15:47:39.956477 [info] : Client[6](127.0.0.1:32974) in, userCount:1
+2025-08-29 15:48:01.190469 [info] : ========== Server init ==========
+2025-08-29 15:48:01.190475 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:48:01.190498 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:48:01.190502 [info] : LogSys level: 1
+2025-08-29 15:48:01.190504 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/../resources/
+2025-08-29 15:48:01.190533 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:48:01.190545 [info] : ========== Server start ==========
+2025-08-29 15:48:03.450618 [info] : Client[6](127.0.0.1:50744) in, userCount:1
+2025-08-29 15:48:03.450658 [info] : Client[6] in!
+2025-08-29 15:48:03.452349 [info] : Client[6] quit!
+2025-08-29 15:48:03.452383 [info] : Client[6](127.0.0.1:50744) quit, UserCount:0
+2025-08-29 15:48:04.234544 [info] : Client[6](127.0.0.1:50750) in, userCount:1
+2025-08-29 15:48:04.234580 [info] : Client[6] in!
+2025-08-29 15:49:04.875704 [info] : Client[6] quit!
+2025-08-29 15:51:02.412090 [info] : ========== Server init ==========
+2025-08-29 15:51:02.412097 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:51:02.412101 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:51:02.412104 [info] : LogSys level: 1
+2025-08-29 15:51:02.412107 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/../resources/
+2025-08-29 15:51:02.412110 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:51:02.412114 [info] : ========== Server start ==========
+2025-08-29 15:51:07.853675 [info] : Client[6](127.0.0.1:34310) in, userCount:1
+2025-08-29 15:51:07.853717 [info] : Client[6] in!
+2025-08-29 15:51:07.854321 [info] : Client[6] quit!
+2025-08-29 15:51:07.854364 [info] : Client[6](127.0.0.1:34310) quit, UserCount:0
+2025-08-29 15:51:08.876934 [info] : Client[6](127.0.0.1:34322) in, userCount:1
+2025-08-29 15:51:08.876973 [info] : Client[6] in!
+2025-08-29 15:52:48.863967 [info] : Client[6] quit!
+2025-08-29 15:54:07.926172 [info] : ========== Server init ==========
+2025-08-29 15:54:07.926178 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:54:07.926181 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:54:07.926184 [info] : LogSys level: 1
+2025-08-29 15:54:07.926186 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/resources/
+2025-08-29 15:54:07.926188 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:54:07.926191 [info] : ========== Server start ==========
+2025-08-29 15:54:10.348982 [info] : Client[6](127.0.0.1:52854) in, userCount:1
+2025-08-29 15:54:10.349026 [info] : Client[6] in!
+2025-08-29 15:54:10.349768 [info] : Client[6] quit!
+2025-08-29 15:54:10.349806 [info] : Client[6](127.0.0.1:52854) quit, UserCount:0
+2025-08-29 15:54:10.884957 [info] : Client[6](127.0.0.1:59082) in, userCount:1
+2025-08-29 15:54:10.885076 [info] : Client[6] in!
+2025-08-29 15:55:11.634345 [info] : Client[6] quit!
+2025-08-29 15:55:50.029010 [info] : ========== Server init ==========
+2025-08-29 15:55:50.029015 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:55:50.029040 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:55:50.029043 [info] : LogSys level: 1
+2025-08-29 15:55:50.029045 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/resources/
+2025-08-29 15:55:50.029049 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:55:50.029060 [info] : ========== Server start ==========
+2025-08-29 15:55:51.741188 [info] : Client[6](127.0.0.1:54608) in, userCount:1
+2025-08-29 15:55:51.741244 [info] : Client[6] in!
+2025-08-29 15:55:51.741999 [info] : Client[6] quit!
+2025-08-29 15:55:51.742035 [info] : Client[6](127.0.0.1:54608) quit, UserCount:0
+2025-08-29 15:55:52.434743 [info] : Client[6](127.0.0.1:54624) in, userCount:1
+2025-08-29 15:56:20.655013 [info] : ========== Server init ==========
+2025-08-29 15:56:20.655020 [info] : Port:1316, OpenLinger: false
+2025-08-29 15:56:20.655042 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-08-29 15:56:20.655045 [info] : LogSys level: 1
+2025-08-29 15:56:20.655047 [info] : srcDir: /home/yamin/coding/UIEWebServer/bin/resources/
+2025-08-29 15:56:20.655050 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-08-29 15:56:20.655052 [info] : ========== Server start ==========
+2025-08-29 15:56:23.597108 [info] : Client[6](127.0.0.1:51494) in, userCount:1
+2025-08-29 15:56:23.597242 [info] : Client[6] in!
+2025-08-29 15:56:23.602374 [info] : Client[6] quit!
+2025-08-29 15:56:23.602571 [info] : Client[6](127.0.0.1:51494) quit, UserCount:0
+2025-08-29 15:56:24.243570 [info] : Client[6](127.0.0.1:51510) in, userCount:1
