@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        /* 样式与登录页相同，可复用 */
+        body { background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 300px; }
+        h1 { text-align: center; color: #165DFF; margin-bottom: 1.5rem; }
+        .input-group { margin-bottom: 1rem; }
+        input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 0.8rem; background: #165DFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0E42D2; }
+        .link { text-align: center; margin-top: 1rem; }
+        a { color: #165DFF; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>用户注册</h1>
+        <form id="registerForm">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="用户名" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="密码" required>
+            </div>
+            <button type="submit">注册</button>
+            <div class="link">
+                <a href="/login.html">已有账号？登录</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 注册表单提交
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // 发送注册请求到后端
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert('注册成功，请登录');
+                window.location.href = '/login.html'; // 注册成功跳转到登录页
+            } else {
+                alert(result.msg || '注册失败');
+            }
+        });
+    </script>
+</body>
+</html>
