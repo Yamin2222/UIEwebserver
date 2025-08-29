@@ -18,26 +18,43 @@ WebServer::WebServer(
             port_(port), openLinger_(OptLinger), timeoutMS_(timeoutMS), isClose_(false),
             timer_(new HeapTimer()), threadpool_(new ThreadPool(threadNum)), epoller_(new Epoller())
     {
-    // 安全获取资源目录（避免 getcwd 分配的紧凑缓冲被 strcat 溢出）
+    // 确定资源目录（优先使用编译期指定的 RESOURCE_DIR；其次根据运行目录智能回退）
     {
+        // 1. 获取当前工作目录（服务器启动时的目录）
         char cwdBuf[PATH_MAX] = {0};
         char* cwd = getcwd(cwdBuf, sizeof(cwdBuf));
-        assert(cwd);
-        
-        // 拼接资源目录路径
-        std::string resDir = std::string(cwd) + "/resources/";
-        
-        // 规范化路径（消除 ..、. 等符号）
+        if (!cwd) {  // 替换 assert，避免程序直接崩溃，改为记录错误并标记服务器关闭
+            LOG_ERROR("Failed to get current working directory! errno: %d", errno);
+            isClose_ = true;
+            srcDir_ = nullptr;
+            return;
+        }
+        std::string cwdStr(cwd);
+
+        // 2. 智能拼接资源目录（支持从 bin 目录启动的场景）
+        std::string resDir;
+        if (cwdStr.size() >= 4 && cwdStr.substr(cwdStr.size() - 4) == "/bin") {
+            // 如果从 bin 目录启动，资源目录为上级目录的 resources
+            resDir = cwdStr.substr(0, cwdStr.size() - 4) + "/resources/";
+        } else {
+            // 否则直接在当前目录下找 resources
+            resDir = cwdStr + "/resources/";
+        }
+
+        // 3. 路径规范化（消除 .. 等符号，更清晰）
         char normalizedPath[PATH_MAX] = {0};
         if (realpath(resDir.c_str(), normalizedPath) == nullptr) {
-            // 若规范化失败（如目录不存在），仍使用原始路径但记录警告
-            LOG_WARN("Failed to normalize resource path: %s, errno: %d", resDir.c_str(), errno);
-            strncpy(normalizedPath, resDir.c_str(), PATH_MAX - 1);
+            LOG_WARN("Resource path may not exist: %s (errno: %d), will use as-is", resDir.c_str(), errno);
+            strncpy(normalizedPath, resDir.c_str(), PATH_MAX - 1);  // 用原始路径兜底
         }
-        
-        // 分配内存并复制
+
+        // 4. 安全分配内存并存储路径
         srcDir_ = static_cast<char*>(malloc(strlen(normalizedPath) + 1));
-        assert(srcDir_);
+        if (!srcDir_) {  // 内存分配失败处理
+            LOG_ERROR("Failed to allocate memory for resource directory!");
+            isClose_ = true;
+            return;
+        }
         strcpy(srcDir_, normalizedPath);
     }
     HttpConn::userCount = 0; //初始化客户端连接计数
@@ -48,7 +65,6 @@ WebServer::WebServer(
 
     InitEventMode_(trigMode); //初始化事件触发模式（ET/LT）
     if(!InitSocket_())  {
-    printf("WebServer Start Error: InitSocket_ failed, exit!\n");
         isClose_ = true; //初始化监听socket
     }
     //初始化日志系统
@@ -331,7 +347,6 @@ bool WebServer::InitSocket_() {
     //创建监听socket（TCP 类型）
     listenFd_ = socket(AF_INET, SOCK_STREAM, 0);
     if(listenFd_ < 0) {
-        printf("InitSocket_ Error: Create socket failed (listenFd = %d)\n", listenFd_);
         LOG_ERROR("Create socket error!");
         return false;
     }
@@ -339,7 +354,6 @@ bool WebServer::InitSocket_() {
     ret = setsockopt(listenFd_, SOL_SOCKET, SO_LINGER, &optLinger, sizeof(optLinger));
     if(ret < 0) {
         close(listenFd_);
-        printf("InitSocket_ Error: Set SO_LINGER failed (ret = %d)\n", ret);
         LOG_ERROR("Init linger error!");
         return false;
     }
@@ -350,7 +364,6 @@ bool WebServer::InitSocket_() {
     int optval = 1;
     ret = setsockopt(listenFd_, SOL_SOCKET, SO_REUSEADDR, (const void*)&optval, sizeof(int));
     if(ret == -1) {
-        printf("InitSocket_ Error: Set SO_REUSEADDR failed (ret = %d)\n", ret);
         LOG_ERROR("set socket setsockopt error !");
         close(listenFd_);
         return false;
@@ -360,7 +373,6 @@ bool WebServer::InitSocket_() {
     //将创建的listenFd_与前面配置的地址结构体（IP+端口）绑定，使socket与特定端口关联
     ret = bind(listenFd_, (struct sockaddr *)&addr, sizeof(addr));
     if(ret < 0) {
-        printf("InitSocket_ Error: Bind port %d failed (ret = %d)\n", port_, ret);
         LOG_ERROR("Bind Port:%d error!", port_);
         close(listenFd_);
         return false;
@@ -370,7 +382,6 @@ bool WebServer::InitSocket_() {
     ret = listen(listenFd_, 6); //第二个参数是“连接请求队列”的最大长度
     if(ret < 0) {
         LOG_ERROR("Listen port:%d error!", port_);
-        printf("InitSocket_ Error: Listen port %d failed (ret = %d)\n", port_, ret);
         close(listenFd_);
         return false;
     }
@@ -378,7 +389,6 @@ bool WebServer::InitSocket_() {
     //将监听socket注册到epoll
     ret = epoller_->AddFd(listenFd_,  listenEvent_ | EPOLLIN);
     if(!ret) {
-        printf("InitSocket_ Error: Add listenFd %d to epoll failed (ret = %d)\n", listenFd_, ret);
         LOG_ERROR("Add listen error!");
         close(listenFd_);
         return false;
@@ -386,7 +396,6 @@ bool WebServer::InitSocket_() {
 
     //设置监听socket为非阻塞模式
     SetFdNonblock(listenFd_);   
-    printf("InitSocket_ Success: Listen port %d (listenFd = %d)\n", port_, listenFd_);  // 新增
     LOG_INFO("Server port:%d", port_);
     return true;
 }
