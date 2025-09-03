@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "/home/yamin/coding/UIEWebServer/bin/server"
   "/home/yamin/coding/UIEWebServer/bin/server.pdb"
+  "CMakeFiles/server.dir/code/ImageEnhancer.cpp.o"
+  "CMakeFiles/server.dir/code/ImageEnhancer.cpp.o.d"
   "CMakeFiles/server.dir/code/buffer.cpp.o"
   "CMakeFiles/server.dir/code/buffer.cpp.o.d"
   "CMakeFiles/server.dir/code/epoller.cpp.o"

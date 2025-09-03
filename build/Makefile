@@ -129,6 +129,30 @@ server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+code/ImageEnhancer.o: code/ImageEnhancer.cpp.o
+.PHONY : code/ImageEnhancer.o
+
+# target to build an object file
+code/ImageEnhancer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/code/ImageEnhancer.cpp.o
+.PHONY : code/ImageEnhancer.cpp.o
+
+code/ImageEnhancer.i: code/ImageEnhancer.cpp.i
+.PHONY : code/ImageEnhancer.i
+
+# target to preprocess a source file
+code/ImageEnhancer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/code/ImageEnhancer.cpp.i
+.PHONY : code/ImageEnhancer.cpp.i
+
+code/ImageEnhancer.s: code/ImageEnhancer.cpp.s
+.PHONY : code/ImageEnhancer.s
+
+# target to generate assembly for a file
+code/ImageEnhancer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/code/ImageEnhancer.cpp.s
+.PHONY : code/ImageEnhancer.cpp.s
+
 code/buffer.o: code/buffer.cpp.o
 .PHONY : code/buffer.o
 
@@ -378,6 +402,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
+	@echo "... code/ImageEnhancer.o"
+	@echo "... code/ImageEnhancer.i"
+	@echo "... code/ImageEnhancer.s"
 	@echo "... code/buffer.o"
 	@echo "... code/buffer.i"
 	@echo "... code/buffer.s"

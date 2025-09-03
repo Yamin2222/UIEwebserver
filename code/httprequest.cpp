@@ -33,52 +33,84 @@ bool HttpRequest::IsKeepAlive() const {
 //核心解析函数
 //从缓冲区buff中读取 HTTP 请求数据，按状态逐步解析
 bool HttpRequest::parse(Buffer& buff) {
-    const char CRLF[] = "\r\n"; //行结束标志
-    if (buff.ReadableBytes() <= 0) { //没有可读字节
+    const char CRLF[] = "\r\n";
+    if (buff.ReadableBytes() <= 0) {
         return false;
     }
 
-    //读取数据
-    //循环条件：缓冲区有可读数据，且解析状态未完成（state_ != FINISH）
+    // 核心思路：
+    // 1. 先解析请求行（REQUEST_LINE）和请求头（HEADERS）（按行解析）；
+    // 2. 解析完请求头后，根据 Content-Length 读取完整的请求体（二进制，不按行分割）；
+    // 3. 最后解析请求体（BODY）。
     while (buff.ReadableBytes() && state_ != FINISH) {
-        //按行分割的流式数据
-        //步骤1：查找当前行的结束位置,四个参数都是指针
-        const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
-        //步骤2：提取当前行的内容（从缓冲区当前位置到lineEnd，不包含CRLF）
-        std::string line(buff.Peek(), lineEnd);
-        switch (state_) {
-            //有限状态机，从请求行开始，每处理完后会自动转入到下一个状态
-            case REQUEST_LINE: //状态1：解析请求行
-                if (!ParseRequestLine_(line)) {
+        if (state_ != BODY) { // 非 BODY 状态：按行解析（请求行、请求头）
+            const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
+            std::string line(buff.Peek(), lineEnd);
+
+            switch (state_) {
+                case REQUEST_LINE:
+                    if (!ParseRequestLine_(line)) {
+                        return false;
+                    }
+                    ParsePath_();
+                    state_ = HEADERS; // 解析完请求行，进入请求头状态
+                    break;
+                case HEADERS:
+                    ParseHeader_(line);
+                    // 检查请求头是否结束：空行（仅 CRLF）表示请求头结束
+                    if (line.empty()) {
+                        // 请求头结束后，判断是否有请求体（通过 Content-Length 判断）
+                        if (header_.count("Content-Type") && 
+                            header_["Content-Type"].find("multipart/form-data") != std::string::npos) {
+                            // 是文件上传请求，需要读取请求体（进入 BODY 状态）
+                            state_ = BODY;
+                        } else {
+                            // 无请求体，直接完成解析
+                            state_ = FINISH;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (lineEnd == buff.BeginWriteConst()) {
+                break; // 缓冲区已读完，等待新数据
+            }
+            buff.RetrieveUntil(lineEnd + 2); // 跳过当前行的 CRLF
+        } else { // BODY 状态：读取完整的二进制请求体（不按行分割）
+            // 1. 从请求头获取请求体长度（Content-Length）
+            size_t content_len = 0;
+            if (header_.count("Content-Length")) {
+                try {
+                    content_len = stoull(header_["Content-Length"]); // 字符串转无符号长整型
+                } catch (...) {
+                    LOG_ERROR("Invalid Content-Length: %s", header_["Content-Length"].c_str());
                     return false;
                 }
-                ParsePath_();
-                break;
-            case HEADERS: //状态2：解析请求头
-                ParseHeader_(line);
-                //检查请求头是否解析完毕：请求头结束后会有一个空行（仅CRLF）
-                //此时缓冲区剩余可读字节 <= 2（刚好一个CRLF），说明请求头结束
-                if (buff.ReadableBytes() <= 2) {
-                    state_ = FINISH;
-                }
-                break;
-            case BODY: //状态3：解析请求体
-                ParseBody_(line);
-                break;
-            case FINISH: //状态4：已完成解析
-                break;
-            default:
-                break;
+            } else {
+                LOG_ERROR("No Content-Length in multipart request");
+                return false;
+            }
+
+            // 2. 读取足够的请求体数据（直到达到 Content-Length）
+            size_t readable = buff.ReadableBytes();
+            if (readable < content_len) {
+                break; // 数据不足，等待新数据（epoll 会继续触发可读事件）
+            }
+
+            // 3. 读取完整的请求体（二进制数据）
+            body_.assign(buff.Peek(), content_len);
+            buff.Retrieve(content_len); // 从缓冲区中移除已读取的数据
+
+            // 4. 解析请求体（multipart 格式）
+            ParseBody_(body_); // 传入完整的二进制请求体，而非单行文本
+            state_ = FINISH; // 解析完请求体，完成整个请求解析
         }
-        //步骤4：判断是否已读完缓冲区数据
-        //lineEnd 等于缓冲区末尾，说明当前缓冲区数据已读完，跳出循环（等待新数据）
-        if (lineEnd == buff.BeginWriteConst()) {
-            break; //读完了
-        }
-        buff.RetrieveUntil(lineEnd + 2);
     }
-    //c_str()是将string转换为C风格字符串（const char*）
-    LOG_DEBUG("[%s], [%s], [%s]", method_.c_str(), path_.c_str(), version_.c_str());
+
+    LOG_DEBUG("[%s], [%s], [%s], Content-Length: %zu", 
+              method_.c_str(), path_.c_str(), version_.c_str(), body_.size());
     return true;
 }
 
@@ -120,21 +152,20 @@ void HttpRequest::ParseHeader_(const string& line) {
     if(regex_match(line, subMatch, patten)) {
         header_[subMatch[1]] = subMatch[2];
     }
-    else {
-        state_ = BODY;  // 状态转换为下一个状态
-    }
+    // else {
+    //     state_ = BODY;  // 状态转换为下一个状态
+    // }
 }
 
 //请求体是请求中携带的实际数据，通常在POST请求中使用
-void HttpRequest::ParseBody_(const std::string& line) {
-    // 原有逻辑：body_ = line; （仅适用于文本格式，二进制需累积）
-    // 修正：累积读取请求体内容（支持二进制数据）
-    body_ += line;
-    // 只有当请求体读取完整后，才解析 Post 数据（multipart 或 form-urlencoded）
-    // 注：完整读取需依赖 "Content-Length" 头，当前 parse 函数已确保按 Content-Length 读取，此处直接解析
-    ParsePost_();
+void HttpRequest::ParseBody_(const std::string& full_body) {
+    body_ = full_body; // 关键：直接用完整的二进制请求体覆盖 body_（而非 +=）
+    ParsePost_(); // 解析 multipart 数据
     state_ = FINISH;
-    LOG_DEBUG("Body len:%zu, is_multipart:%d", body_.size(), IsMultipart() ? 1 : 0);
+    // 日志：打印实际的请求体长度和是否为 multipart 类型
+    LOG_DEBUG("Body len:%zu, is_multipart:%d, boundary:%s", 
+              body_.size(), IsMultipart() ? 1 : 0, 
+              multipart_boundary_.c_str());
 }
 
 // 16进制转化为10进制

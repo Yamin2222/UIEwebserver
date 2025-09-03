@@ -72,10 +72,24 @@ include CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/codegen:
 .PHONY : CMakeFiles/server.dir/codegen
 
+CMakeFiles/server.dir/code/ImageEnhancer.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/code/ImageEnhancer.cpp.o: /home/yamin/coding/UIEWebServer/code/ImageEnhancer.cpp
+CMakeFiles/server.dir/code/ImageEnhancer.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/code/ImageEnhancer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/ImageEnhancer.cpp.o -MF CMakeFiles/server.dir/code/ImageEnhancer.cpp.o.d -o CMakeFiles/server.dir/code/ImageEnhancer.cpp.o -c /home/yamin/coding/UIEWebServer/code/ImageEnhancer.cpp
+
+CMakeFiles/server.dir/code/ImageEnhancer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/code/ImageEnhancer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yamin/coding/UIEWebServer/code/ImageEnhancer.cpp > CMakeFiles/server.dir/code/ImageEnhancer.cpp.i
+
+CMakeFiles/server.dir/code/ImageEnhancer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/code/ImageEnhancer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yamin/coding/UIEWebServer/code/ImageEnhancer.cpp -o CMakeFiles/server.dir/code/ImageEnhancer.cpp.s
+
 CMakeFiles/server.dir/code/buffer.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/buffer.cpp.o: /home/yamin/coding/UIEWebServer/code/buffer.cpp
 CMakeFiles/server.dir/code/buffer.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/code/buffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/code/buffer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/buffer.cpp.o -MF CMakeFiles/server.dir/code/buffer.cpp.o.d -o CMakeFiles/server.dir/code/buffer.cpp.o -c /home/yamin/coding/UIEWebServer/code/buffer.cpp
 
 CMakeFiles/server.dir/code/buffer.cpp.i: cmake_force
@@ -89,7 +103,7 @@ CMakeFiles/server.dir/code/buffer.cpp.s: cmake_force
 CMakeFiles/server.dir/code/epoller.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/epoller.cpp.o: /home/yamin/coding/UIEWebServer/code/epoller.cpp
 CMakeFiles/server.dir/code/epoller.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/code/epoller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/code/epoller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/epoller.cpp.o -MF CMakeFiles/server.dir/code/epoller.cpp.o.d -o CMakeFiles/server.dir/code/epoller.cpp.o -c /home/yamin/coding/UIEWebServer/code/epoller.cpp
 
 CMakeFiles/server.dir/code/epoller.cpp.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/server.dir/code/epoller.cpp.s: cmake_force
 CMakeFiles/server.dir/code/heaptimer.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/heaptimer.cpp.o: /home/yamin/coding/UIEWebServer/code/heaptimer.cpp
 CMakeFiles/server.dir/code/heaptimer.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/code/heaptimer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/code/heaptimer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/heaptimer.cpp.o -MF CMakeFiles/server.dir/code/heaptimer.cpp.o.d -o CMakeFiles/server.dir/code/heaptimer.cpp.o -c /home/yamin/coding/UIEWebServer/code/heaptimer.cpp
 
 CMakeFiles/server.dir/code/heaptimer.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/server.dir/code/heaptimer.cpp.s: cmake_force
 CMakeFiles/server.dir/code/httpconn.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/httpconn.cpp.o: /home/yamin/coding/UIEWebServer/code/httpconn.cpp
 CMakeFiles/server.dir/code/httpconn.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/code/httpconn.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/code/httpconn.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/httpconn.cpp.o -MF CMakeFiles/server.dir/code/httpconn.cpp.o.d -o CMakeFiles/server.dir/code/httpconn.cpp.o -c /home/yamin/coding/UIEWebServer/code/httpconn.cpp
 
 CMakeFiles/server.dir/code/httpconn.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/server.dir/code/httpconn.cpp.s: cmake_force
 CMakeFiles/server.dir/code/httprequest.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/httprequest.cpp.o: /home/yamin/coding/UIEWebServer/code/httprequest.cpp
 CMakeFiles/server.dir/code/httprequest.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/code/httprequest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/code/httprequest.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/httprequest.cpp.o -MF CMakeFiles/server.dir/code/httprequest.cpp.o.d -o CMakeFiles/server.dir/code/httprequest.cpp.o -c /home/yamin/coding/UIEWebServer/code/httprequest.cpp
 
 CMakeFiles/server.dir/code/httprequest.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/server.dir/code/httprequest.cpp.s: cmake_force
 CMakeFiles/server.dir/code/httpresponse.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/httpresponse.cpp.o: /home/yamin/coding/UIEWebServer/code/httpresponse.cpp
 CMakeFiles/server.dir/code/httpresponse.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/code/httpresponse.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/code/httpresponse.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/httpresponse.cpp.o -MF CMakeFiles/server.dir/code/httpresponse.cpp.o.d -o CMakeFiles/server.dir/code/httpresponse.cpp.o -c /home/yamin/coding/UIEWebServer/code/httpresponse.cpp
 
 CMakeFiles/server.dir/code/httpresponse.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/server.dir/code/httpresponse.cpp.s: cmake_force
 CMakeFiles/server.dir/code/log.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/log.cpp.o: /home/yamin/coding/UIEWebServer/code/log.cpp
 CMakeFiles/server.dir/code/log.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/code/log.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/code/log.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/log.cpp.o -MF CMakeFiles/server.dir/code/log.cpp.o.d -o CMakeFiles/server.dir/code/log.cpp.o -c /home/yamin/coding/UIEWebServer/code/log.cpp
 
 CMakeFiles/server.dir/code/log.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/server.dir/code/log.cpp.s: cmake_force
 CMakeFiles/server.dir/code/sqlconnpool.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/sqlconnpool.cpp.o: /home/yamin/coding/UIEWebServer/code/sqlconnpool.cpp
 CMakeFiles/server.dir/code/sqlconnpool.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/code/sqlconnpool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/code/sqlconnpool.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/sqlconnpool.cpp.o -MF CMakeFiles/server.dir/code/sqlconnpool.cpp.o.d -o CMakeFiles/server.dir/code/sqlconnpool.cpp.o -c /home/yamin/coding/UIEWebServer/code/sqlconnpool.cpp
 
 CMakeFiles/server.dir/code/sqlconnpool.cpp.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/server.dir/code/sqlconnpool.cpp.s: cmake_force
 CMakeFiles/server.dir/code/webserver.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/code/webserver.cpp.o: /home/yamin/coding/UIEWebServer/code/webserver.cpp
 CMakeFiles/server.dir/code/webserver.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/code/webserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/code/webserver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/code/webserver.cpp.o -MF CMakeFiles/server.dir/code/webserver.cpp.o.d -o CMakeFiles/server.dir/code/webserver.cpp.o -c /home/yamin/coding/UIEWebServer/code/webserver.cpp
 
 CMakeFiles/server.dir/code/webserver.cpp.i: cmake_force
@@ -201,7 +215,7 @@ CMakeFiles/server.dir/code/webserver.cpp.s: cmake_force
 CMakeFiles/server.dir/main.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/main.cpp.o: /home/yamin/coding/UIEWebServer/main.cpp
 CMakeFiles/server.dir/main.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/main.cpp.o -MF CMakeFiles/server.dir/main.cpp.o.d -o CMakeFiles/server.dir/main.cpp.o -c /home/yamin/coding/UIEWebServer/main.cpp
 
 CMakeFiles/server.dir/main.cpp.i: cmake_force
@@ -214,6 +228,7 @@ CMakeFiles/server.dir/main.cpp.s: cmake_force
 
 # Object files for target server
 server_OBJECTS = \
+"CMakeFiles/server.dir/code/ImageEnhancer.cpp.o" \
 "CMakeFiles/server.dir/code/buffer.cpp.o" \
 "CMakeFiles/server.dir/code/epoller.cpp.o" \
 "CMakeFiles/server.dir/code/heaptimer.cpp.o" \
@@ -228,6 +243,7 @@ server_OBJECTS = \
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
+/home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/code/ImageEnhancer.cpp.o
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/code/buffer.cpp.o
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/code/epoller.cpp.o
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/code/heaptimer.cpp.o
@@ -240,8 +256,21 @@ server_EXTERNAL_OBJECTS =
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/main.cpp.o
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/build.make
 /home/yamin/coding/UIEWebServer/bin/server: /usr/lib/x86_64-linux-gnu/libmysqlclient.so
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_gapi.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_highgui.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_ml.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_photo.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_stitching.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_video.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_videoio.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_imgcodecs.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_calib3d.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_features2d.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_flann.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_imgproc.so.4.5.5
+/home/yamin/coding/UIEWebServer/bin/server: /usr/local/lib/libopencv_core.so.4.5.5
 /home/yamin/coding/UIEWebServer/bin/server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable /home/yamin/coding/UIEWebServer/bin/server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yamin/coding/UIEWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable /home/yamin/coding/UIEWebServer/bin/server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

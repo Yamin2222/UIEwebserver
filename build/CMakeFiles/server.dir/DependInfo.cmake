@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/yamin/coding/UIEWebServer/code/ImageEnhancer.cpp" "CMakeFiles/server.dir/code/ImageEnhancer.cpp.o" "gcc" "CMakeFiles/server.dir/code/ImageEnhancer.cpp.o.d"
   "/home/yamin/coding/UIEWebServer/code/buffer.cpp" "CMakeFiles/server.dir/code/buffer.cpp.o" "gcc" "CMakeFiles/server.dir/code/buffer.cpp.o.d"
   "/home/yamin/coding/UIEWebServer/code/epoller.cpp" "CMakeFiles/server.dir/code/epoller.cpp.o" "gcc" "CMakeFiles/server.dir/code/epoller.cpp.o.d"
   "/home/yamin/coding/UIEWebServer/code/heaptimer.cpp" "CMakeFiles/server.dir/code/heaptimer.cpp.o" "gcc" "CMakeFiles/server.dir/code/heaptimer.cpp.o.d"

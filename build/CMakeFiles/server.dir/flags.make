@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DRESOURCE_DIR=\"/home/yamin/coding/UIEWebServer/resources\"
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/yamin/onnxruntime/onnxruntime-linux-x64-gpu-1.16.3/include -isystem /usr/local/include/opencv4
 
-CXX_FLAGS =  -O2 -Wall -g -O3 -DNDEBUG -std=gnu++14
+CXX_FLAGS =  -O2 -Wall -g -std=gnu++17
 
