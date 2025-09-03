@@ -16,17 +16,24 @@
 #include "sqlconnpool.h"
 #include "threadpool.h"
 #include "httpconn.h"
+#include "ImageEnhancer.h"
 
 class WebServer {
 public:
     WebServer(int port, int trigMode, int timeoutMS, bool OptLinger,
             int sqlPort, const char* sqlUser, const char* sqlPwd,
             const char* dbName, int connPoolNum, int threadNum,
-            bool openLog, int logLevel, int logQueSize);
+            bool openLog, int logLevel, int logQueSize,
+            const char* modelPath = "./models/LPGPNet.onnx");  // 新增：ONNX 模型路径
     ~WebServer();
     void Start();
 
 private:
+    // 新增：ONNX 模型路径（从构造函数传入，支持灵活配置）
+    std::string modelPath_; 
+    // 新增：初始化 ImageEnhancer 单例（加载 ONNX 模型）
+    bool InitImageEnhancer_(); 
+    
     //初始化相关
     bool InitSocket_(); //初始化监听socket（创建、绑定、监听、设置非阻塞）
     void InitEventMode_(int trigMode); //初始化事件触发模式（ET/LT），设置listenEvent_和connEvent_

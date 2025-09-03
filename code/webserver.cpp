@@ -14,10 +14,17 @@ WebServer::WebServer(
             int port, int trigMode, int timeoutMS, bool OptLinger,
             int sqlPort, const char* sqlUser, const  char* sqlPwd,
             const char* dbName, int connPoolNum, int threadNum,
-            bool openLog, int logLevel, int logQueSize):
-            port_(port), openLinger_(OptLinger), timeoutMS_(timeoutMS), isClose_(false),
-            timer_(new HeapTimer()), threadpool_(new ThreadPool(threadNum)), epoller_(new Epoller())
-    {
+            bool openLog, int logLevel, int logQueSize,
+            const char* modelPath)
+    : port_(port), openLinger_(OptLinger), timeoutMS_(timeoutMS), isClose_(false),
+      timer_(new HeapTimer()), threadpool_(new ThreadPool(threadNum)), epoller_(new Epoller()),
+      modelPath_(modelPath ? modelPath : "./models/LPGPNet.onnx")  // 初始化模型路径（默认值兜底）
+{
+    // 新增：校验模型路径有效性（避免空路径）
+    if (modelPath_.empty()) {
+        LOG_ERROR("ONNX model path is empty! Use default path: ./models/LPGPNet.onnx");
+        modelPath_ = "./models/LPGPNet.onnx";  // 空路径时用默认值
+    }
     // 确定资源目录（优先使用编译期指定的 RESOURCE_DIR；其次根据运行目录智能回退）
     {
         // 1. 获取当前工作目录（服务器启动时的目录）
@@ -81,6 +88,10 @@ WebServer::WebServer(
             LOG_INFO("srcDir: %s", HttpConn::srcDir);
             LOG_INFO("SqlConnPool num: %d, ThreadPool num: %d", connPoolNum, threadNum);
         }
+    }
+    // 原有日志初始化后，新增模型路径日志
+    if(openLog && !isClose_) {
+        LOG_INFO("ONNX Model Path: %s", modelPath_.c_str());  // 打印模型路径，便于排查
     }
 }
 
@@ -405,4 +416,26 @@ int WebServer::SetFdNonblock(int fd) {
     int flags = fcntl(fd, F_GETFL, 0);
     if (flags < 0) return -1;
     return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+}
+
+// 新增：初始化ImageEnhancer（适配其静态Init方法）
+bool WebServer::InitImageEnhancer_() {
+    try {
+        // 1. 调用ImageEnhancer的静态Init方法（传入模型路径）
+        // 注意：ImageEnhancer::Init() 已保证线程安全（std::call_once），且重复调用会抛异常
+        ImageEnhancer::Init(modelPath_);
+
+        // 2. 验证初始化结果（尝试获取实例，确认无异常）
+        auto& enhancer = ImageEnhancer::GetInstance();
+        // 可选：打印模型输入尺寸，确认加载成功
+        auto [input_w, input_h] = enhancer.GetModelInputSize();
+        LOG_INFO("ImageEnhancer initialized successfully!");
+        LOG_INFO("Model Input Size: %dx%d", input_w, input_h);
+        return true;
+
+    } catch (const std::exception& e) {
+        // 3. 捕获所有异常（模型不存在、格式错误等），返回失败
+        LOG_ERROR("ImageEnhancer init failed: %s", e.what());
+        return false;
+    }
 }
