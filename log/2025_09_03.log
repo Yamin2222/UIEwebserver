@@ -1,0 +1,36 @@
+2025-09-03 10:22:37.421145 [info] : ========== Server init ==========
+2025-09-03 10:22:37.421182 [info] : Port:1316, OpenLinger: false
+2025-09-03 10:22:37.421197 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 10:22:37.421209 [info] : LogSys level: 1
+2025-09-03 10:22:37.421222 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 10:22:37.421235 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 10:22:37.421395 [info] : ========== Server start ==========
+2025-09-03 10:23:24.708452 [info] : Client[18](127.0.0.1:55846) in, userCount:1
+2025-09-03 10:23:24.708598 [info] : Client[18] in!
+2025-09-03 10:23:24.969855 [info] : Client[19](127.0.0.1:55856) in, userCount:2
+2025-09-03 10:23:24.969965 [info] : Client[19] in!
+2025-09-03 10:23:31.564169 [info] : Client[20](127.0.0.1:57178) in, userCount:3
+2025-09-03 10:23:31.564295 [info] : Client[20] in!
+2025-09-03 10:23:31.567909 [info] : Client[21](127.0.0.1:57184) in, userCount:4
+2025-09-03 10:23:31.568004 [info] : Client[21] in!
+2025-09-03 10:23:31.798221 [info] : Client[23](127.0.0.1:57194) in, userCount:5
+2025-09-03 10:23:31.798346 [info] : Client[23] in!
+2025-09-03 10:24:12.840976 [error]: RequestLine Error
+2025-09-03 10:24:12.841268 [info] : Client[21] quit!
+2025-09-03 10:24:12.841459 [info] : Client[21](127.0.0.1:57184) quit, UserCount:4
+2025-09-03 10:24:24.719067 [info] : Client[18] quit!
+2025-09-03 10:24:24.719246 [info] : Client[18](127.0.0.1:55846) quit, UserCount:3
+2025-09-03 10:24:24.969600 [info] : Client[19] quit!
+2025-09-03 10:24:24.969767 [info] : Client[19](127.0.0.1:55856) quit, UserCount:2
+2025-09-03 10:24:31.567630 [info] : Client[20] quit!
+2025-09-03 10:24:31.567682 [info] : Client[20](127.0.0.1:57178) quit, UserCount:1
+2025-09-03 10:24:31.798015 [info] : Client[23] quit!
+2025-09-03 10:24:31.798180 [info] : Client[23](127.0.0.1:57194) quit, UserCount:0
+2025-09-03 10:24:32.424432 [info] : Client[18](127.0.0.1:51506) in, userCount:1
+2025-09-03 10:24:32.424557 [info] : Client[18] in!
+2025-09-03 10:24:32.429925 [error]: RequestLine Error
+2025-09-03 10:24:32.430276 [info] : Client[18] quit!
+2025-09-03 10:24:32.430444 [info] : Client[18](127.0.0.1:51506) quit, UserCount:0
+2025-09-03 10:24:32.683700 [info] : Client[18](127.0.0.1:51514) in, userCount:1
+2025-09-03 10:24:32.683808 [info] : Client[18] in!
+2025-09-03 10:25:32.702933 [info] : Client[18] quit!

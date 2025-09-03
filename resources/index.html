@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LPGPNet水下图像增强工具</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #165DFF;
+            margin: 20px 0 30px;
+            font-weight: 600;
+        }
+        .upload-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .upload-area {
+            text-align: center;
+            padding: 40px 20px;
+            border: 2px dashed #165DFF;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #0E42D2;
+            background-color: #f0f7ff;
+        }
+        #fileInput {
+            display: none;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: #165DFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        .btn:hover {
+            background: #0E42D2;
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(1px);
+        }
+        .btn-download {
+            background: #36D399;
+        }
+        .btn-download:hover {
+            background: #28A745;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        #fileInfo {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding: 10px;
+        }
+        .preview-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .preview-box {
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .preview-box h3 {
+            color: #444;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .preview-content {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #fafafa;
+        }
+        .preview-img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        #originalVideo, #enhancedVideo {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LPGPNet水下图像/视频增强工具</h1>
+        
+        <div class="upload-section">
+            <div class="upload-area">
+                <label for="fileInput" class="btn">选择文件</label>
+                <input type="file" id="fileInput" accept="image/*,video/*">
+                <p id="fileInfo">未选择文件</p>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn" id="enhanceBtn">增强</button>
+                <button class="btn btn-download" id="mainDownloadBtn" disabled>下载结果</button>
+            </div>
+        </div>
+
+        <div class="preview-container">
+            <div class="preview-box">
+                <h3>原图/原视频</h3>
+                <div class="preview-content">
+                    <img id="originalImg" class="preview-img" style="display: none;">
+                    <video id="originalVideo" controls style="display: none;"></video>
+                </div>
+            </div>
+            <div class="preview-box">
+                <h3>增强后</h3>
+                <div class="preview-content">
+                    <img id="enhancedImg" class="preview-img" style="display: none;">
+                    <video id="enhancedVideo" controls style="display: none;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const originalImg = document.getElementById('originalImg');
+        const originalVideo = document.getElementById('originalVideo');
+        const enhancedImg = document.getElementById('enhancedImg');
+        const enhancedVideo = document.getElementById('enhancedVideo');
+        const enhanceBtn = document.getElementById('enhanceBtn');
+        const mainDownloadBtn = document.getElementById('mainDownloadBtn');
+        let currentFile = null;
+        let enhancedFileUrl = null;
+
+        // 选择文件后预览
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length === 0) return;
+            currentFile = e.target.files[0];
+            fileInfo.textContent = `已选择: ${currentFile.name} (${formatFileSize(currentFile.size)})`;
+            
+            // 隐藏所有预览
+            originalImg.style.display = 'none';
+            originalVideo.style.display = 'none';
+            enhancedImg.style.display = 'none';
+            enhancedVideo.style.display = 'none';
+            mainDownloadBtn.disabled = true;
+
+            // 创建文件URL并显示原图/原视频
+            const fileUrl = URL.createObjectURL(currentFile);
+            if (currentFile.type.startsWith('image/')) {
+                originalImg.src = fileUrl;
+                originalImg.style.display = 'block';
+            } else if (currentFile.type.startsWith('video/')) {
+                originalVideo.src = fileUrl;
+                originalVideo.style.display = 'block';
+            }
+        });
+
+        // 增强按钮点击事件
+        enhanceBtn.addEventListener('click', async () => {
+            if (!currentFile) {
+                alert('请先选择文件');
+                return;
+            }
+
+            // 显示加载状态
+            enhanceBtn.disabled = true;
+            enhanceBtn.textContent = '增强中...';
+            mainDownloadBtn.disabled = true;
+
+            // 创建FormData上传文件
+            const formData = new FormData();
+            formData.append('file', currentFile);
+
+            try {
+                // 模拟增强成功
+                setTimeout(() => {
+                    // 创建模拟的增强后文件URL
+                    enhancedFileUrl = URL.createObjectURL(currentFile);
+
+                    // 显示增强后结果
+                    if (currentFile.type.startsWith('image/')) {
+                        enhancedImg.src = enhancedFileUrl;
+                        enhancedImg.style.display = 'block';
+                    } else if (currentFile.type.startsWith('video/')) {
+                        enhancedVideo.src = enhancedFileUrl;
+                        enhancedVideo.style.display = 'block';
+                    }
+
+                    // 启用下载按钮
+                    mainDownloadBtn.disabled = false;
+
+                    // 恢复按钮状态
+                    enhanceBtn.disabled = false;
+                    enhanceBtn.textContent = '增强';
+                }, 1500);
+
+            } catch (err) {
+                alert(err.message);
+                enhanceBtn.disabled = false;
+                enhanceBtn.textContent = '增强';
+            }
+        });
+
+        // 下载按钮点击事件
+        mainDownloadBtn.addEventListener('click', () => {
+            if (!enhancedFileUrl) return;
+
+            // 创建下载链接
+            const a = document.createElement('a');
+            a.href = enhancedFileUrl;
+            
+            // 生成文件名
+            const originalName = currentFile.name;
+            const dotIndex = originalName.lastIndexOf('.');
+            let fileName;
+            
+            if (dotIndex !== -1) {
+                fileName = originalName.substring(0, dotIndex) + '_enhanced' + originalName.substring(dotIndex);
+            } else {
+                fileName = originalName + '_enhanced';
+            }
+            
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        // 格式化文件大小
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+    </script>
+</body>
+</html>

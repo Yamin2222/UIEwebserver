@@ -1,0 +1,66 @@
+2025-09-03 10:31:17.252021 [info] : ========== Server init ==========
+2025-09-03 10:31:17.252028 [info] : Port:1316, OpenLinger: false
+2025-09-03 10:31:17.252031 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 10:31:17.252034 [info] : LogSys level: 1
+2025-09-03 10:31:17.252036 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 10:31:17.252038 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 10:31:17.252041 [info] : ========== Server start ==========
+2025-09-03 10:31:22.818596 [info] : Client[18](127.0.0.1:43882) in, userCount:1
+2025-09-03 10:31:22.818657 [info] : Client[18] in!
+2025-09-03 10:31:22.822140 [info] : Client[19](127.0.0.1:43888) in, userCount:2
+2025-09-03 10:31:22.822162 [info] : Client[19] in!
+2025-09-03 10:31:23.053799 [info] : Client[20](127.0.0.1:43904) in, userCount:3
+2025-09-03 10:31:47.528344 [info] : ========== Server init ==========
+2025-09-03 10:31:47.528350 [info] : Port:1316, OpenLinger: false
+2025-09-03 10:31:47.528352 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 10:31:47.528355 [info] : LogSys level: 1
+2025-09-03 10:31:47.528357 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 10:31:47.528374 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 10:31:47.528376 [info] : ========== Server start ==========
+2025-09-03 10:31:50.004173 [info] : Client[18](127.0.0.1:47716) in, userCount:1
+2025-09-03 10:31:50.004294 [info] : Client[18] in!
+2025-09-03 10:31:50.007907 [info] : Client[19](127.0.0.1:47722) in, userCount:2
+2025-09-03 10:31:50.008006 [info] : Client[19] in!
+2025-09-03 10:31:50.242427 [info] : Client[20](127.0.0.1:47736) in, userCount:3
+2025-09-03 10:31:50.242534 [info] : Client[20] in!
+2025-09-03 10:32:00.300800 [error]: RequestLine Error
+2025-09-03 10:32:00.301134 [info] : Client[18] quit!
+2025-09-03 10:32:00.301364 [info] : Client[18](127.0.0.1:47716) quit, UserCount:2
+2025-09-03 10:32:50.259067 [info] : Client[20] quit!
+2025-09-03 10:32:50.259245 [info] : Client[20](127.0.0.1:47736) quit, UserCount:1
+2025-09-03 10:33:29.784955 [info] : Client[19] quit!
+2025-09-03 10:33:29.785157 [info] : Client[19](127.0.0.1:47722) quit, UserCount:0
+2025-09-03 10:34:09.859480 [info] : Client[18](127.0.0.1:53834) in, userCount:1
+2025-09-03 10:34:09.859597 [info] : Client[18] in!
+2025-09-03 10:34:09.861955 [info] : Client[19](127.0.0.1:53840) in, userCount:2
+2025-09-03 10:34:09.862042 [info] : Client[19] in!
+2025-09-03 10:34:10.112396 [info] : Client[20](127.0.0.1:53854) in, userCount:3
+2025-09-03 10:34:10.112503 [info] : Client[20] in!
+2025-09-03 10:35:09.919070 [info] : Client[18] quit!
+2025-09-03 10:35:09.919299 [info] : Client[18](127.0.0.1:53834) quit, UserCount:2
+2025-09-03 10:35:09.919355 [info] : Client[19] quit!
+2025-09-03 10:35:09.919406 [info] : Client[19](127.0.0.1:53840) quit, UserCount:1
+2025-09-03 10:35:10.112713 [info] : Client[20] quit!
+2025-09-03 10:35:10.112877 [info] : Client[20](127.0.0.1:53854) quit, UserCount:0
+2025-09-03 10:40:59.042537 [info] : Client[18](127.0.0.1:35706) in, userCount:1
+2025-09-03 10:40:59.042657 [info] : Client[18] in!
+2025-09-03 10:40:59.045872 [info] : Client[19](127.0.0.1:35722) in, userCount:2
+2025-09-03 10:40:59.045968 [info] : Client[19] in!
+2025-09-03 10:41:59.634558 [info] : ========== Server init ==========
+2025-09-03 10:41:59.634590 [info] : Port:1316, OpenLinger: false
+2025-09-03 10:41:59.634605 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 10:41:59.634617 [info] : LogSys level: 1
+2025-09-03 10:41:59.634629 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 10:41:59.634745 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 10:41:59.634880 [info] : ========== Server start ==========
+2025-09-03 10:42:01.218507 [info] : Client[18](127.0.0.1:37164) in, userCount:1
+2025-09-03 10:42:01.218621 [info] : Client[18] in!
+2025-09-03 10:42:01.221476 [info] : Client[19](127.0.0.1:37170) in, userCount:2
+2025-09-03 10:42:01.221574 [info] : Client[19] in!
+2025-09-03 10:42:01.469760 [info] : Client[20](127.0.0.1:37178) in, userCount:3
+2025-09-03 10:42:01.469875 [info] : Client[20] in!
+2025-09-03 10:43:01.251004 [info] : Client[19] quit!
+2025-09-03 10:43:01.251485 [info] : Client[19](127.0.0.1:37170) quit, UserCount:2
+2025-09-03 10:43:01.469895 [info] : Client[20] quit!
+2025-09-03 10:43:01.470070 [info] : Client[20](127.0.0.1:37178) quit, UserCount:1
+2025-09-03 10:43:29.908724 [info] : Client[18] quit!
