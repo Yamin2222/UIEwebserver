@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>LPGPNet水下图像增强工具</title>
     <style>
+        /* 你的CSS样式保持不变 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -138,7 +139,7 @@
         <div class="upload-section">
             <div class="upload-area">
                 <label for="fileInput" class="btn">选择文件</label>
-                <input type="file" id="fileInput" accept="image/*,video/*">
+                <input type="file" id="fileInput" accept="image/*"> <!-- 暂时先支持图像（视频处理需后端额外逻辑） -->
                 <p id="fileInfo">未选择文件</p>
             </div>
             
@@ -150,7 +151,7 @@
 
         <div class="preview-container">
             <div class="preview-box">
-                <h3>原图/原视频</h3>
+                <h3>原图</h3>
                 <div class="preview-content">
                     <img id="originalImg" class="preview-img" style="display: none;">
                     <video id="originalVideo" controls style="display: none;"></video>
@@ -178,7 +179,7 @@
         let currentFile = null;
         let enhancedFileUrl = null;
 
-        // 选择文件后预览
+        // 选择文件后预览（保持不变）
         fileInput.addEventListener('change', (e) => {
             if (e.target.files.length === 0) return;
             currentFile = e.target.files[0];
@@ -191,21 +192,22 @@
             enhancedVideo.style.display = 'none';
             mainDownloadBtn.disabled = true;
 
-            // 创建文件URL并显示原图/原视频
-            const fileUrl = URL.createObjectURL(currentFile);
+            // 显示原图（暂时只处理图像，视频后续扩展）
             if (currentFile.type.startsWith('image/')) {
+                const fileUrl = URL.createObjectURL(currentFile);
                 originalImg.src = fileUrl;
                 originalImg.style.display = 'block';
-            } else if (currentFile.type.startsWith('video/')) {
-                originalVideo.src = fileUrl;
-                originalVideo.style.display = 'block';
+            } else {
+                alert('暂不支持视频，请选择图像文件（如JPG、PNG）');
+                currentFile = null;
+                fileInfo.textContent = '未选择文件';
             }
         });
 
-        // 增强按钮点击事件
+        // 关键修改：增强按钮点击事件（替换模拟逻辑为真实后端请求）
         enhanceBtn.addEventListener('click', async () => {
             if (!currentFile) {
-                alert('请先选择文件');
+                alert('请先选择图像文件');
                 return;
             }
 
@@ -214,71 +216,77 @@
             enhanceBtn.textContent = '增强中...';
             mainDownloadBtn.disabled = true;
 
-            // 创建FormData上传文件
-            const formData = new FormData();
-            formData.append('file', currentFile);
-
             try {
-                // 模拟增强成功
-                setTimeout(() => {
-                    // 创建模拟的增强后文件URL
-                    enhancedFileUrl = URL.createObjectURL(currentFile);
+                // 1. 创建FormData，包装要上传的文件（name需与后端接收参数一致）
+                const formData = new FormData();
+                formData.append('file', currentFile); // 后端接收时用"image"作为参数名
 
-                    // 显示增强后结果
-                    if (currentFile.type.startsWith('image/')) {
-                        enhancedImg.src = enhancedFileUrl;
-                        enhancedImg.style.display = 'block';
-                    } else if (currentFile.type.startsWith('video/')) {
-                        enhancedVideo.src = enhancedFileUrl;
-                        enhancedVideo.style.display = 'block';
-                    }
+                // 2. 发送POST请求到后端
+                const response = await fetch('/upload', { // 后端增强接口路径是 /upload
+                    method: 'POST',
+                    body: formData, // 自动设置Content-Type: multipart/form-data
+                });
 
-                    // 启用下载按钮
-                    mainDownloadBtn.disabled = false;
+                // 3. 校验响应状态
+                if (!response.ok) {
+                    throw new Error(`后端请求失败: ${response.statusText}`);
+                }
 
-                    // 恢复按钮状态
-                    enhanceBtn.disabled = false;
-                    enhanceBtn.textContent = '增强';
-                }, 1500);
+                // 4. 处理后端返回的增强后图像（假设后端返回Blob格式）
+                const enhancedBlob = await response.blob(); // 接收二进制图像数据
+                enhancedFileUrl = URL.createObjectURL(enhancedBlob); // 转换为前端可预览的URL
+
+                // 5. 显示增强后的图像
+                enhancedImg.src = enhancedFileUrl;
+                enhancedImg.style.display = 'block';
+
+                // 6. 启用下载按钮
+                mainDownloadBtn.disabled = false;
 
             } catch (err) {
-                alert(err.message);
+                // 错误处理
+                alert(`增强失败: ${err.message}`);
+                console.error('增强过程出错:', err);
+
+            } finally {
+                // 恢复按钮状态（无论成功/失败都执行）
                 enhanceBtn.disabled = false;
                 enhanceBtn.textContent = '增强';
             }
         });
 
-        // 下载按钮点击事件
+        // 下载按钮点击事件（保持不变，但依赖真实的enhancedFileUrl）
         mainDownloadBtn.addEventListener('click', () => {
-            if (!enhancedFileUrl) return;
+            if (!enhancedFileUrl || !currentFile) return;
 
-            // 创建下载链接
-            const a = document.createElement('a');
-            a.href = enhancedFileUrl;
-            
-            // 生成文件名
+            // 生成增强后的文件名（如"test_enhanced.jpg"）
             const originalName = currentFile.name;
             const dotIndex = originalName.lastIndexOf('.');
-            let fileName;
-            
-            if (dotIndex !== -1) {
-                fileName = originalName.substring(0, dotIndex) + '_enhanced' + originalName.substring(dotIndex);
-            } else {
-                fileName = originalName + '_enhanced';
-            }
-            
+            const fileName = dotIndex !== -1 
+                ? `${originalName.substring(0, dotIndex)}_enhanced${originalName.substring(dotIndex)}`
+                : `${originalName}_enhanced`;
+
+            // 创建临时下载链接并触发点击
+            const a = document.createElement('a');
+            a.href = enhancedFileUrl;
             a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
         });
 
-        // 格式化文件大小
+        // 格式化文件大小（工具函数，保持不变）
         function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' B';
-            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-            return (bytes / 1048576).toFixed(1) + ' MB';
+            if (bytes < 1024) return `${bytes} B`;
+            if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+            return `${(bytes / 1048576).toFixed(1)} MB`;
         }
+
+        // 页面卸载时释放URL（避免内存泄漏）
+        window.addEventListener('beforeunload', () => {
+            if (originalImg.src) URL.revokeObjectURL(originalImg.src);
+            if (enhancedFileUrl) URL.revokeObjectURL(enhancedFileUrl);
+        });
     </script>
 </body>
 </html>

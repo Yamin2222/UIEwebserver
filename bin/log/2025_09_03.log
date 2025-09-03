@@ -108,3 +108,50 @@
 2025-09-03 22:07:50.895080 [info] : Client[20] in!
 2025-09-03 22:07:54.987089 [error]: RequestLine Error
 2025-09-03 22:07:54.987467 [info] : Client[18] quit!
+2025-09-03 22:33:32.123451 [info] : ========== Server init ==========
+2025-09-03 22:33:32.123458 [info] : Port:1316, OpenLinger: false
+2025-09-03 22:33:32.123473 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 22:33:32.123475 [info] : LogSys level: 1
+2025-09-03 22:33:32.123477 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 22:33:32.123479 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 22:33:32.123496 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-03 22:33:32.123499 [info] : ========== Server start ==========
+2025-09-03 22:33:36.250878 [info] : Client[18](127.0.0.1:33776) in, userCount:1
+2025-09-03 22:33:36.250999 [info] : Client[18] in!
+2025-09-03 22:33:36.257507 [info] : Client[19](127.0.0.1:33792) in, userCount:2
+2025-09-03 22:33:36.257602 [info] : Client[19] in!
+2025-09-03 22:33:36.519027 [info] : Client[20](127.0.0.1:33798) in, userCount:3
+2025-09-03 22:33:36.519182 [info] : Client[20] in!
+2025-09-03 22:34:35.876931 [error]: RequestLine Error
+2025-09-03 22:34:35.877063 [info] : Client[18] quit!
+2025-09-03 22:34:35.877111 [info] : Client[18](127.0.0.1:33776) quit, UserCount:2
+2025-09-03 22:34:36.257464 [info] : Client[19] quit!
+2025-09-03 22:34:36.257616 [info] : Client[19](127.0.0.1:33792) quit, UserCount:1
+2025-09-03 22:34:36.519007 [info] : Client[20] quit!
+2025-09-03 22:34:36.519160 [info] : Client[20](127.0.0.1:33798) quit, UserCount:0
+2025-09-03 22:35:42.671865 [info] : Client[18](127.0.0.1:41526) in, userCount:1
+2025-09-03 22:35:42.671994 [info] : Client[18] in!
+2025-09-03 22:35:42.679844 [info] : Client[19](127.0.0.1:41532) in, userCount:2
+2025-09-03 22:35:42.679863 [info] : Client[19] in!
+2025-09-03 22:35:42.900080 [info] : Client[20](127.0.0.1:41538) in, userCount:3
+2025-09-03 22:35:42.900179 [info] : Client[20] in!
+2025-09-03 22:35:45.987839 [error]: RequestLine Error
+2025-09-03 22:35:45.988212 [info] : Client[18] quit!
+2025-09-03 22:35:45.988376 [info] : Client[18](127.0.0.1:41526) quit, UserCount:2
+2025-09-03 22:35:47.941578 [error]: RequestLine Error
+2025-09-03 22:35:47.941670 [info] : Client[19] quit!
+2025-09-03 22:35:47.941751 [info] : Client[19](127.0.0.1:41532) quit, UserCount:1
+2025-09-03 22:35:59.828901 [error]: RequestLine Error
+2025-09-03 22:35:59.829269 [info] : Client[20] quit!
+2025-09-03 22:36:35.292078 [info] : ========== Server init ==========
+2025-09-03 22:36:35.292084 [info] : Port:1316, OpenLinger: false
+2025-09-03 22:36:35.292104 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-03 22:36:35.292131 [info] : LogSys level: 1
+2025-09-03 22:36:35.292144 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-03 22:36:35.292158 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-03 22:36:35.292168 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-03 22:36:35.292177 [info] : ========== Server start ==========
+2025-09-03 22:36:37.421461 [info] : Client[18](127.0.0.1:39214) in, userCount:1
+2025-09-03 22:36:37.421570 [info] : Client[18] in!
+2025-09-03 22:36:41.493391 [error]: RequestLine Error
+2025-09-03 22:36:41.493757 [info] : Client[18] quit!
