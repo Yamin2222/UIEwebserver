@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>500 - 服务器错误</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 50px 30px;
+        }
+        .error-code {
+            font-size: 80px;
+            font-weight: 700;
+            color: #7B1FA2;
+            margin-bottom: 20px;
+        }
+        .error-message {
+            font-size: 20px;
+            color: #444;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: #165DFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .btn:hover {
+            background: #0E42D2;
+            transform: translateY(-1px);
+        }
+        .details {
+            color: #666;
+            margin-top: 30px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">500</div>
+        <div class="error-message">
+            服务器内部错误
+        </div>
+        <p>图像增强过程中发生错误，请尝试以下操作：</p>
+        <div style="margin-top: 20px;">
+            <a href="javascript:history.back()" class="btn">返回上一页</a>
+            <a href="/index.html" class="btn">返回首页</a>
+        </div>
+        <div class="details">
+            <p>可能的原因：</p>
+            <ul style="list-style-type: none; margin-top: 10px;">
+                <li>• 图像数据损坏或格式不支持</li>
+                <li>• 服务器资源暂时不足</li>
+                <li>• 增强模型加载失败</li>
+            </ul>
+            <p style="margin-top: 15px;">请尝试使用其他图像文件，或稍后再试。</p>
+        </div>
+    </div>
+</body>
+</html>

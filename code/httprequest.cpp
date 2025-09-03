@@ -126,11 +126,15 @@ void HttpRequest::ParseHeader_(const string& line) {
 }
 
 //请求体是请求中携带的实际数据，通常在POST请求中使用
-void HttpRequest::ParseBody_(const string& line) {
-    body_ = line;
+void HttpRequest::ParseBody_(const std::string& line) {
+    // 原有逻辑：body_ = line; （仅适用于文本格式，二进制需累积）
+    // 修正：累积读取请求体内容（支持二进制数据）
+    body_ += line;
+    // 只有当请求体读取完整后，才解析 Post 数据（multipart 或 form-urlencoded）
+    // 注：完整读取需依赖 "Content-Length" 头，当前 parse 函数已确保按 Content-Length 读取，此处直接解析
     ParsePost_();
-    state_ = FINISH;    // 状态转换为下一个状态
-    LOG_DEBUG("Body:%s, len:%d", line.c_str(), line.size());
+    state_ = FINISH;
+    LOG_DEBUG("Body len:%zu, is_multipart:%d", body_.size(), IsMultipart() ? 1 : 0);
 }
 
 // 16进制转化为10进制
@@ -142,9 +146,27 @@ int HttpRequest::ConverHex(char ch) {
 }
 
 void HttpRequest::ParsePost_() {
-    //POST请求且为表单数据
-    if (method_ == "POST" && header_["Content-Type"] == "application/x-www-form-urlencoded") {
+    if (method_ != "POST") {
+        return;
+    }
+
+    // 分支1：multipart/form-data（文件上传，如图像）
+    if (IsMultipart()) {
+        // 先获取并存储 multipart 分隔符
+        multipart_boundary_ = GetMultipartBoundary_();
+        if (multipart_boundary_.empty()) {
+            LOG_ERROR("Multipart boundary not found");
+            return;
+        }
+        // 解析 multipart 格式的请求体，提取文件
+        ParseMultipartBody_();
+        return;
+    }
+
+    // 分支2：application/x-www-form-urlencoded（普通表单，如登录/注册）
+    if (header_.count("Content-Type") && header_["Content-Type"] == "application/x-www-form-urlencoded") {
         ParseFormUrlencoded_();
+        // 原有用户验证逻辑（登录/注册）保留不变
         if (DEFAULT_HTML_TAG.count(path_)) {
             int tag = DEFAULT_HTML_TAG.find(path_)->second;
             LOG_DEBUG("Tag:%d", tag);
@@ -156,6 +178,126 @@ void HttpRequest::ParsePost_() {
                     path_ = "/error.html";
                 }
             }
+        }
+    }
+}
+
+// 1. 提取 multipart 分隔符（从 Content-Type 中获取，如 "boundary=----WebKitFormBoundaryxxxx"）
+std::string HttpRequest::GetMultipartBoundary_() const {
+    auto it = header_.find("Content-Type");
+    if (it == header_.end()) {
+        return "";
+    }
+    const std::string& content_type = it->second;
+    // 匹配 "boundary=" 后的分隔符（支持可选的引号，如 boundary="----xxx"）
+    std::regex patten("boundary=(\"?)([^\";]+)\\1");
+    std::smatch subMatch;
+    if (regex_search(content_type, subMatch, patten) && subMatch.size() >= 3) {
+        // 分隔符需在前后加 "--"（前端传递的是 "----xxx"，解析后需补全为 "--xxxx" 用于分割）
+        return "--" + subMatch[2].str();
+    }
+    return "";
+}
+
+// 2. 解析 multipart/form-data 格式的请求体，提取文件信息
+void HttpRequest::ParseMultipartBody_() {
+    if (body_.empty() || multipart_boundary_.empty()) {
+        return;
+    }
+
+    const std::string& boundary = multipart_boundary_;
+    const std::string end_boundary = boundary + "--"; // 结束分隔符（比普通分隔符多一个 "--"）
+    const size_t boundary_len = boundary.size();
+    const size_t end_boundary_len = end_boundary.size();
+
+    size_t pos = 0;
+    const size_t body_len = body_.size();
+
+    // 循环解析每个文件块（每个块以 boundary 开头，以 boundary 或 end_boundary 结尾）
+    while (pos < body_len) {
+        // 步骤1：找到当前块的边界（从 pos 开始找 boundary）
+        size_t boundary_pos = body_.find(boundary, pos);
+        if (boundary_pos == std::string::npos) {
+            break; // 未找到边界，解析结束
+        }
+        pos = boundary_pos + boundary_len; // 跳过边界，指向块内容开始位置
+
+        // 步骤2：判断是否为结束边界（若到末尾，退出循环）
+        if (body_.substr(pos, end_boundary_len) == end_boundary) {
+            break;
+        }
+
+        // 步骤3：解析块的头部（包含文件名、MIME类型、表单字段名）
+        FileInfo file_info;
+        std::string field_name; // 表单字段名（如前端 <input name="file"> 的 "file"）
+        bool is_file = false;
+
+        // 解析块头部的每一行（直到遇到空行，空行后是文件二进制内容）
+        while (pos < body_len) {
+            // 找当前行的结束（CRLF）
+            size_t line_end = body_.find("\r\n", pos);
+            if (line_end == std::string::npos) {
+                break;
+            }
+            std::string line = body_.substr(pos, line_end - pos);
+            pos = line_end + 2; // 跳过 CRLF
+
+            // 空行：头部解析结束，后续是文件二进制内容
+            if (line.empty()) {
+                break;
+            }
+
+            // 解析 "Content-Disposition" 行（包含表单字段名、文件名）
+            if (line.find("Content-Disposition") != std::string::npos) {
+                // 匹配表单字段名：name="file"
+                std::regex name_patten("name=\"([^\"]+)\"");
+                std::smatch name_match;
+                if (regex_search(line, name_match, name_patten) && name_match.size() >= 2) {
+                    field_name = name_match[1].str();
+                }
+                // 匹配文件名：filename="test.jpg"（存在 filename 说明是文件，否则是普通表单字段）
+                std::regex filename_patten("filename=\"([^\"]+)\"");
+                std::smatch filename_match;
+                if (regex_search(line, filename_match, filename_patten) && filename_match.size() >= 2) {
+                    file_info.filename = filename_match[1].str();
+                    is_file = true; // 标记为文件类型
+                }
+            }
+
+            // 解析 "Content-Type" 行（文件的 MIME 类型，如 image/jpeg）
+            if (is_file && line.find("Content-Type") != std::string::npos) {
+                std::regex type_patten("Content-Type: ([^;]+)");
+                std::smatch type_match;
+                if (regex_search(line, type_match, type_patten) && type_match.size() >= 2) {
+                    file_info.content_type = type_match[1].str();
+                }
+            }
+        }
+
+        // 步骤4：解析文件二进制内容（从当前 pos 到下一个 boundary 之前）
+        if (is_file && !field_name.empty()) {
+            // 找到下一个 boundary 的位置（内容结束位置）
+            size_t content_end = body_.find(boundary, pos);
+            if (content_end == std::string::npos) {
+                content_end = body_len; // 若未找到，取 body 末尾
+            }
+            // 提取二进制内容（注意：部分浏览器会在内容末尾加 CRLF，需去掉）
+            size_t content_len = content_end - pos;
+            if (content_len > 2 && body_.substr(content_end - 2, 2) == "\r\n") {
+                content_len -= 2; // 去掉末尾的 CRLF
+            }
+            file_info.content = body_.substr(pos, content_len);
+            // 将文件信息存入 files_ 容器（key：表单字段名）
+            files_[field_name] = file_info;
+            LOG_DEBUG("Multipart file: field=%s, name=%s, size=%zu, type=%s",
+                      field_name.c_str(), file_info.filename.c_str(),
+                      file_info.content.size(), file_info.content_type.c_str());
+        }
+
+        // 移动 pos 到下一个 boundary 位置，准备解析下一个块
+        pos = body_.find(boundary, pos);
+        if (pos == std::string::npos) {
+            break;
         }
     }
 }

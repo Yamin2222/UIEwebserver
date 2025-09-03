@@ -109,37 +109,126 @@ ssize_t HttpConn::write(int* saveErrno) {
 }
 
 bool HttpConn::process() {
-    //步骤1：初始化请求对象
     request_.Init();
 
-    //步骤2：检查读缓冲区是否有数据（没有数据则无法处理）
+    // 检查读缓冲区是否有数据
     if (readBuff_.ReadableBytes() <= 0) {
         return false;
-    } else if (request_.parse(readBuff_)) {
-        //步骤3：解析读缓冲区中的HTTP请求
-        LOG_DEBUG("%s", request_.path().c_str());
-
-        //初始化响应：200表示成功，根据请求决定是否保持连接
-        response_.Init(srcDir, request_.path(), request_.IsKeepAlive(), 200);
-    } else {
-        //解析失败：返回400错误（Bad Request），且不保持连接
-        response_.Init(srcDir, request_.path(), false, 400);
     }
-    //步骤4：生成响应报文，写入写缓冲区（响应头+部分响应体）
+
+    // 步骤1：解析HTTP请求（解析失败返回400错误页面）
+    if (!request_.parse(readBuff_)) {
+        std::string error_path = "/400.html";  // 临时变量存储错误页面路径
+        response_.Init(srcDir, error_path, false, 400);
+        response_.MakeResponse(writeBuff_);
+        
+        // 绑定响应缓冲区
+        iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek());
+        iov_[0].iov_len = writeBuff_.ReadableBytes();
+        iovCnt_ = 1;
+        return true;
+    }
+
+    // 步骤2：处理图像上传请求（multipart/form-data + /upload路径）
+    if (request_.IsMultipart() && request_.path() == "/upload") {
+        const auto& files = request_.GetFiles();
+        
+        // 子步骤2.1：无文件上传 → 返回400错误
+        if (files.empty()) {
+            std::string error_path = "/400.html";
+            response_.Init(srcDir, error_path, false, 400);
+            response_.MakeResponse(writeBuff_);
+            
+            iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek());
+            iov_[0].iov_len = writeBuff_.ReadableBytes();
+            iovCnt_ = 1;
+            return true;
+        }
+
+        try {
+            // 子步骤2.2：提取前端表单中的"file"字段（与前端<input name="file">对应）
+            auto file_it = files.find("file");
+            if (file_it == files.end()) {
+                throw std::runtime_error("No 'file' field in upload request");
+            }
+            const auto& file_info = file_it->second;
+
+            // 子步骤2.3：校验文件类型（仅允许JPEG/PNG）
+            if (file_info.content_type != "image/jpeg" && file_info.content_type != "image/png") {
+                throw std::runtime_error("Unsupported file type: " + file_info.content_type);
+            }
+
+            // 子步骤2.4：二进制文件内容 → cv::Mat（内存解码）
+            std::vector<uchar> image_data(file_info.content.begin(), file_info.content.end());
+            cv::Mat input_image = cv::imdecode(image_data, cv::IMREAD_COLOR);
+            if (input_image.empty()) {
+                throw std::runtime_error("Failed to decode image (corrupted or invalid)");
+            }
+
+            // 子步骤2.5：调用ImageEnhancer增强图像
+            cv::Mat enhanced_image = ImageEnhancer::GetInstance().EnhanceImage(input_image);
+
+            // 子步骤2.6：增强后图像 → JPEG编码
+            std::vector<uchar> encoded_data;
+            std::vector<int> encode_params = {cv::IMWRITE_JPEG_QUALITY, 90};
+            if (!cv::imencode(".jpg", enhanced_image, encoded_data, encode_params)) {
+                throw std::runtime_error("Failed to encode enhanced image");
+            }
+
+            // 子步骤2.7：构建图像响应（直接返回JPEG二进制数据）
+            writeBuff_.Append("HTTP/1.1 200 OK\r\n");
+            writeBuff_.Append("Content-Type: image/jpeg\r\n");
+            writeBuff_.Append("Content-Length: " + std::to_string(encoded_data.size()) + "\r\n");
+            
+            // 处理长连接（与HttpResponse保持一致）
+            if (request_.IsKeepAlive()) {
+                writeBuff_.Append("Connection: keep-alive\r\n");
+                writeBuff_.Append("Keep-Alive: max=6, timeout=120\r\n");
+            } else {
+                writeBuff_.Append("Connection: close\r\n");
+            }
+            
+            writeBuff_.Append("\r\n");  // 空行分隔头和体
+            writeBuff_.Append(encoded_data.data(), encoded_data.size());
+
+            // 绑定响应缓冲区
+            iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek());
+            iov_[0].iov_len = writeBuff_.ReadableBytes();
+            iovCnt_ = 1;
+            return true;
+
+        } catch (const std::exception& e) {
+            // 子步骤2.8：增强过程异常 → 返回500错误页面
+            LOG_ERROR("Image enhancement failed: %s", e.what());
+            std::string error_path = "/500.html";
+            response_.Init(srcDir, error_path, false, 500);
+            response_.MakeResponse(writeBuff_);
+            
+            iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek());
+            iov_[0].iov_len = writeBuff_.ReadableBytes();
+            iovCnt_ = 1;
+            return true;
+        }
+    }
+
+    // 步骤3：处理普通请求（如访问index.html等静态资源）
+    LOG_DEBUG("Normal request: %s", request_.path().c_str());
+    response_.Init(srcDir, request_.path(), request_.IsKeepAlive(), 200);
     response_.MakeResponse(writeBuff_);
 
-    //步骤5：绑定响应头到iov_[0]（准备发送）
-    iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek()); //指向响应头数据
-    iov_[0].iov_len = writeBuff_.ReadableBytes(); //响应头长度
+    // 绑定响应缓冲区
+    iov_[0].iov_base = const_cast<char*>(writeBuff_.Peek());
+    iov_[0].iov_len = writeBuff_.ReadableBytes();
     iovCnt_ = 1;
 
-    //步骤6：如果有响应体（文件），绑定到iov_[1]
-    if(response_.FileLen() > 0  && response_.File()) {
+    // 如果有文件内容（如index.html），绑定第二个缓冲区
+    if (response_.FileLen() > 0 && response_.File()) {
         iov_[1].iov_base = response_.File();
         iov_[1].iov_len = response_.FileLen();
         iovCnt_ = 2;
     }
-    //打印调试日志：文件大小、缓冲区数量、总待发送字节数
-    LOG_DEBUG("filesize:%d, %d  to %d", response_.FileLen() , iovCnt_, ToWriteBytes());
+
+    LOG_DEBUG("Response info: filesize=%d, iov_cnt=%d, total_bytes=%d",
+              response_.FileLen(), iovCnt_, ToWriteBytes());
     return true;
 }
