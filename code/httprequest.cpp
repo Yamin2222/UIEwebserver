@@ -18,6 +18,7 @@ void HttpRequest::Init() {
     state_ = REQUEST_LINE;
     header_.clear();
     post_.clear();
+    isET_ = false; // 默认非ET模式
 }
 
 //判断是否需要长连接，两个条件：
@@ -32,86 +33,129 @@ bool HttpRequest::IsKeepAlive() const {
 
 //核心解析函数
 //从缓冲区buff中读取 HTTP 请求数据，按状态逐步解析
-bool HttpRequest::parse(Buffer& buff) {
+bool HttpRequest::parse(Buffer& buff, int fd) {
     const char CRLF[] = "\r\n";
-    if (buff.ReadableBytes() <= 0) {
-        return false;
-    }
+    bool is_parse_continue = true; // 标记是否需要继续解析（无错误）
 
-    // 核心思路：
-    // 1. 先解析请求行（REQUEST_LINE）和请求头（HEADERS）（按行解析）；
-    // 2. 解析完请求头后，根据 Content-Length 读取完整的请求体（二进制，不按行分割）；
-    // 3. 最后解析请求体（BODY）。
-    while (buff.ReadableBytes() && state_ != FINISH) {
-        if (state_ != BODY) { // 非 BODY 状态：按行解析（请求行、请求头）
-            const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
-            std::string line(buff.Peek(), lineEnd);
+    // 1. 解析请求行（仅在 REQUEST_LINE 状态处理）
+    if (state_ == REQUEST_LINE && buff.ReadableBytes() > 0) {
+        const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
+        
+        // 情况1：请求行不完整（未找到 CRLF），等待更多数据
+        if (lineEnd == buff.BeginWriteConst()) {
+            LOG_DEBUG("RequestLine incomplete, wait for more data");
+            return is_parse_continue; // 返回 true，无错误
+        }
 
-            switch (state_) {
-                case REQUEST_LINE:
-                    if (!ParseRequestLine_(line)) {
-                        return false;
-                    }
-                    ParsePath_();
-                    state_ = HEADERS; // 解析完请求行，进入请求头状态
-                    break;
-                case HEADERS:
-                    ParseHeader_(line);
-                    // 检查请求头是否结束：空行（仅 CRLF）表示请求头结束
-                    if (line.empty()) {
-                        // 请求头结束后，判断是否有请求体（通过 Content-Length 判断）
-                        if (header_.count("Content-Type") && 
-                            header_["Content-Type"].find("multipart/form-data") != std::string::npos) {
-                            // 是文件上传请求，需要读取请求体（进入 BODY 状态）
-                            state_ = BODY;
-                        } else {
-                            // 无请求体，直接完成解析
-                            state_ = FINISH;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            if (lineEnd == buff.BeginWriteConst()) {
-                break; // 缓冲区已读完，等待新数据
-            }
-            buff.RetrieveUntil(lineEnd + 2); // 跳过当前行的 CRLF
-        } else { // BODY 状态：读取完整的二进制请求体（不按行分割）
-            // 1. 从请求头获取请求体长度（Content-Length）
-            size_t content_len = 0;
-            if (header_.count("Content-Length")) {
-                try {
-                    content_len = stoull(header_["Content-Length"]); // 字符串转无符号长整型
-                } catch (...) {
-                    LOG_ERROR("Invalid Content-Length: %s", header_["Content-Length"].c_str());
-                    return false;
-                }
-            } else {
-                LOG_ERROR("No Content-Length in multipart request");
-                return false;
-            }
-
-            // 2. 读取足够的请求体数据（直到达到 Content-Length）
-            size_t readable = buff.ReadableBytes();
-            if (readable < content_len) {
-                break; // 数据不足，等待新数据（epoll 会继续触发可读事件）
-            }
-
-            // 3. 读取完整的请求体（二进制数据）
-            body_.assign(buff.Peek(), content_len);
-            buff.Retrieve(content_len); // 从缓冲区中移除已读取的数据
-
-            // 4. 解析请求体（multipart 格式）
-            ParseBody_(body_); // 传入完整的二进制请求体，而非单行文本
-            state_ = FINISH; // 解析完请求体，完成整个请求解析
+        // 情况2：请求行完整，解析
+        std::string requestLine(buff.Peek(), lineEnd);
+        if (!ParseRequestLine_(requestLine)) {
+            LOG_ERROR("RequestLine Error: invalid format -> [%s]", requestLine.c_str());
+            is_parse_continue = false; // 解析出错，返回 false
+        } else {
+            // 解析成功：移动缓冲区指针，切换到 HEADERS 状态
+            buff.RetrieveUntil(lineEnd + 2);
+            state_ = HEADERS;
+            ParsePath_(); // 处理路径（如 / → /index.html）
         }
     }
 
-    LOG_DEBUG("[%s], [%s], [%s], Content-Length: %zu", 
-              method_.c_str(), path_.c_str(), version_.c_str(), body_.size());
-    return true;
+    // 2. 解析请求头（仅在 HEADERS 状态处理，且上一步无错误）
+    if (state_ == HEADERS && is_parse_continue && buff.ReadableBytes() > 0) {
+        while (true) {
+            const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
+            
+            // 情况1：当前行不完整，等待更多数据
+            if (lineEnd == buff.BeginWriteConst()) {
+                LOG_DEBUG("Headers incomplete, wait for more data");
+                break;
+            }
+
+            // 情况2：当前行完整，提取并解析
+            std::string line(buff.Peek(), lineEnd);
+            buff.RetrieveUntil(lineEnd + 2);
+
+            // 空行 → 请求头结束，切换状态
+            if (line.empty()) {
+                if (method_ == "POST") {
+                    // POST 请求：根据 Content-Type 判断是否需要解析 body
+                    if (header_.count("Content-Type") && 
+                        header_["Content-Type"].find("multipart/form-data") != std::string::npos) {
+                        state_ = BODY; // 需要解析 multipart body
+                    } else {
+                        state_ = FINISH; // 无 body 或非 multipart，解析完成
+                    }
+                } else {
+                    // GET 等请求：无 body，解析完成
+                    state_ = FINISH;
+                }
+                break;
+            } else {
+                // 非空行 → 解析请求头（如 Content-Type、Content-Length）
+                ParseHeader_(line);
+            }
+        }
+    }
+
+    // 3. 解析请求体（仅在 BODY 状态处理，且上一步无错误）
+    if (state_ == BODY && is_parse_continue) {
+        // 第一步：检查是否有 Content-Length（multipart 必须包含）
+        if (header_.count("Content-Length") == 0) {
+            LOG_ERROR("POST request missing Content-Length header");
+            is_parse_continue = false;
+            return is_parse_continue;
+        }
+
+        // 第二步：解析 Content-Length（防止无效值）
+        size_t content_length = 0;
+        try {
+            content_length = std::stoull(header_["Content-Length"]);
+        } catch (...) {
+            LOG_ERROR("Invalid Content-Length: %s", header_["Content-Length"].c_str());
+            is_parse_continue = false;
+            return is_parse_continue;
+        }
+
+        // 第三步：确保读取到完整的 body 数据（核心：适配 ET 模式）
+        while (buff.ReadableBytes() < content_length) {
+            // 非 ET 模式：数据不完整，等待下次触发（不主动读）
+            if (!isET_) {
+                LOG_DEBUG("Non-ET mode: body incomplete (current: %zu, need: %zu)",
+                          buff.ReadableBytes(), content_length);
+                break;
+            }
+
+            // ET 模式：主动循环读取，直到数据足够或出错
+            ssize_t read_len = buff.ReadFd(fd, nullptr); // 需 Buffer 类支持 GetFd()
+            if (read_len <= 0) {
+                // 读取失败（EAGAIN 是正常情况，其他是错误）
+                if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                    LOG_DEBUG("ET mode: no more data (EAGAIN), wait for next event");
+                    break;
+                } else {
+                    LOG_ERROR("ET mode: read body failed, errno: %d", errno);
+                    is_parse_continue = false;
+                    return is_parse_continue;
+                }
+            }
+            LOG_DEBUG("ET mode: read %zd bytes, total readable: %zu",
+                      read_len, buff.ReadableBytes());
+        }
+
+        // 第四步：数据足够，解析 body
+        if (buff.ReadableBytes() >= content_length) {
+            body_.assign(buff.Peek(), content_length);
+            buff.Retrieve(content_length); // 移动缓冲区指针，释放已解析数据
+            ParseBody_(body_); // 解析 multipart 数据（提取文件）
+            state_ = FINISH; // 标记解析完成
+            LOG_DEBUG("Body parsed successfully, size: %zu bytes", body_.size());
+        } else {
+            LOG_DEBUG("Body still incomplete, wait for more data");
+        }
+    }
+
+    // 返回值语义：true = 无错误（可继续解析），false = 解析出错
+    return is_parse_continue;
 }
 
 //解析简化路径（如果需要）
@@ -131,17 +175,26 @@ void HttpRequest::ParsePath_() {
 }
 
 bool HttpRequest::ParseRequestLine_(const string& line) {
-    //^匹配字符串的开始位置，在[]中则表示“非”，表示不接受方括号表达式中的字符
-    regex patten("^([^ ]*) ([^ ]*) HTTP/([^ ]*)$");
-    smatch subMatch; //用于存储正则匹配到的结果（捕获组）
+    // 优化后正则：
+    // 1. ([A-Z]+)：仅匹配大写请求方法（POST/GET/PUT等，符合HTTP规范）
+    // 2. \\s+：匹配1个及以上空格（兼容浏览器连续空格）
+    // 3. ([^ ]+)：匹配路径（无空格，如/upload）
+    // 4. HTTP/([0-9.]+)：严格匹配版本号（如1.1、1.0）
+    regex patten("^([A-Z]+)\\s+([^ ]+)\\s+HTTP/([0-9.]+)$");
+    smatch subMatch;
+
     if (regex_match(line, subMatch, patten)) {
         method_ = subMatch[1];
         path_ = subMatch[2];
         version_ = subMatch[3];
         state_ = HEADERS;
+        LOG_DEBUG("Parsed RequestLine: method=%s, path=%s, version=%s",
+                  method_.c_str(), path_.c_str(), version_.c_str());
         return true;
     }
-    LOG_ERROR("RequestLine Error");
+
+    // 打印错误请求行内容，方便定位格式问题
+    LOG_ERROR("RequestLine Error: invalid format -> [%s]", line.c_str());
     return false;
 }
 
@@ -151,6 +204,7 @@ void HttpRequest::ParseHeader_(const string& line) {
     smatch subMatch;
     if(regex_match(line, subMatch, patten)) {
         header_[subMatch[1]] = subMatch[2];
+                LOG_DEBUG("Header: %s: %s", subMatch[1].str().c_str(), subMatch[2].str().c_str());
     }
     // else {
     //     state_ = BODY;  // 状态转换为下一个状态
@@ -191,6 +245,11 @@ void HttpRequest::ParsePost_() {
         }
         // 解析 multipart 格式的请求体，提取文件
         ParseMultipartBody_();
+        // 解析后检查 files_ 是否为空（无文件）
+        if (files_.empty()) {
+            LOG_ERROR("No files parsed from multipart request");
+            state_ = FINISH; // 强制结束解析
+        }
         return;
     }
 

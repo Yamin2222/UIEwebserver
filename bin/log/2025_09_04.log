@@ -1,0 +1,219 @@
+2025-09-04 11:01:18.970953 [info] : Client[18](127.0.0.1:49040) in, userCount:1
+2025-09-04 11:01:18.971077 [info] : Client[18] in!
+2025-09-04 11:01:19.732871 [info] : Client[19](127.0.0.1:49048) in, userCount:2
+2025-09-04 11:01:19.732912 [info] : Client[19] in!
+2025-09-04 11:01:40.027267 [error]: RequestLine Error
+2025-09-04 11:01:40.027393 [info] : Client[18] quit!
+2025-09-04 11:01:40.027457 [info] : Client[18](127.0.0.1:49040) quit, UserCount:1
+2025-09-04 11:02:19.770673 [info] : Client[19] quit!
+2025-09-04 11:02:19.770867 [info] : Client[19](127.0.0.1:49048) quit, UserCount:0
+2025-09-04 11:20:30.464584 [info] : Client[18](127.0.0.1:59998) in, userCount:1
+2025-09-04 11:20:30.464717 [info] : Client[18] in!
+2025-09-04 11:20:30.467148 [info] : Client[19](127.0.0.1:60010) in, userCount:2
+2025-09-04 11:20:30.467249 [info] : Client[19] in!
+2025-09-04 11:20:30.712437 [info] : Client[20](127.0.0.1:40442) in, userCount:3
+2025-09-04 11:20:30.712551 [info] : Client[20] in!
+2025-09-04 11:20:33.771794 [error]: RequestLine Error
+2025-09-04 11:20:33.772181 [info] : Client[18] quit!
+2025-09-04 11:20:33.772362 [info] : Client[18](127.0.0.1:59998) quit, UserCount:2
+2025-09-04 11:21:30.522674 [info] : Client[19] quit!
+2025-09-04 11:21:30.522857 [info] : Client[19](127.0.0.1:60010) quit, UserCount:1
+2025-09-04 11:21:30.712230 [info] : Client[20] quit!
+2025-09-04 11:21:30.712277 [info] : Client[20](127.0.0.1:40442) quit, UserCount:0
+2025-09-04 11:34:51.475200 [info] : Client[18](127.0.0.1:60552) in, userCount:1
+2025-09-04 11:34:51.475332 [info] : Client[18] in!
+2025-09-04 11:34:54.413752 [error]: RequestLine Error
+2025-09-04 11:34:54.414123 [info] : Client[18] quit!
+2025-09-04 11:34:54.414334 [info] : Client[18](127.0.0.1:60552) quit, UserCount:0
+2025-09-04 11:37:06.199128 [info] : Client[18](127.0.0.1:60312) in, userCount:1
+2025-09-04 11:37:06.199264 [info] : Client[18] in!
+2025-09-04 11:37:06.203163 [info] : Client[19](127.0.0.1:60326) in, userCount:2
+2025-09-04 11:37:06.203284 [info] : Client[19] in!
+2025-09-04 11:37:06.451733 [info] : Client[20](127.0.0.1:60332) in, userCount:3
+2025-09-04 11:37:06.451853 [info] : Client[20] in!
+2025-09-04 11:37:22.106758 [error]: RequestLine Error
+2025-09-04 11:37:22.107200 [info] : Client[19] quit!
+2025-09-04 11:43:12.497144 [info] : ========== Server init ==========
+2025-09-04 11:43:12.497176 [info] : Port:1316, OpenLinger: false
+2025-09-04 11:43:12.497190 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 11:43:12.497203 [info] : LogSys level: 1
+2025-09-04 11:43:12.497215 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 11:43:12.497227 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 11:43:12.497386 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 11:43:12.497424 [info] : ========== Server start ==========
+2025-09-04 11:43:37.456847 [info] : Client[18](127.0.0.1:42752) in, userCount:1
+2025-09-04 11:43:37.456899 [info] : Client[18] in!
+2025-09-04 11:43:37.461166 [info] : Client[19](127.0.0.1:42760) in, userCount:2
+2025-09-04 11:43:37.461204 [info] : Client[19] in!
+2025-09-04 11:43:37.691328 [info] : Client[20](127.0.0.1:42766) in, userCount:3
+2025-09-04 11:43:37.691426 [info] : Client[20] in!
+2025-09-04 11:43:40.281858 [error]: No files in upload request, return 400
+2025-09-04 11:43:40.283767 [error]: RequestLine Error: invalid format -> [------WebKitFormBoundaryCloGANkmesQcYuCH]
+2025-09-04 11:43:40.283918 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 11:43:40.284078 [error]: HTTP request parse failed, return 400
+2025-09-04 11:43:40.284322 [info] : Client[18] quit!
+2025-09-04 11:43:40.284581 [info] : Client[18](127.0.0.1:42752) quit, UserCount:2
+2025-09-04 11:44:37.468455 [info] : Client[19] quit!
+2025-09-04 11:44:37.468634 [info] : Client[19](127.0.0.1:42760) quit, UserCount:1
+2025-09-04 11:44:37.690998 [info] : Client[20] quit!
+2025-09-04 11:49:35.343283 [info] : ========== Server init ==========
+2025-09-04 11:49:35.343290 [info] : Port:1316, OpenLinger: false
+2025-09-04 11:49:35.343292 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 11:49:35.343294 [info] : LogSys level: 1
+2025-09-04 11:49:35.343309 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 11:49:35.343312 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 11:49:35.343314 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 11:49:35.343316 [info] : ========== Server start ==========
+2025-09-04 11:49:44.829727 [info] : Client[18](127.0.0.1:57376) in, userCount:1
+2025-09-04 11:49:44.829873 [info] : Client[18] in!
+2025-09-04 11:49:46.305068 [info] : Client[19](127.0.0.1:57390) in, userCount:2
+2025-09-04 11:49:46.305169 [info] : Client[19] in!
+2025-09-04 11:49:48.654082 [error]: No files in upload request, return 400
+2025-09-04 11:49:48.655652 [error]: RequestLine Error: invalid format -> [¦”é†sžÏöfÓËçsYlÙÈæ$u\–HåãT‚:–gâhXëM{Li©€Ý­+3ô¯.§(líÄËC:æóH¡3,*¿æò“Fõu®¸¦mýÌ“mgvÆ×l°…!•š ªÂ$¾ÚÕzV PöÓi¾{'•Ùûbì™ ÎfcÑž4ºy8l$èƒR¤n¯`1RÞX Ù‰>ïäBOr5‚xZ"S8šK—]¯8ßµÄnµ•ñ…ÊÛct6†ÆØ;+ní(Žf¥ƒ‡%¬èÑÿ]
+2025-09-04 11:49:48.655739 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 11:49:48.655857 [error]: HTTP request parse failed, return 400
+2025-09-04 11:49:48.656104 [info] : Client[18] quit!
+2025-09-04 11:49:48.656312 [info] : Client[18](127.0.0.1:57376) quit, UserCount:1
+2025-09-04 11:50:46.341129 [info] : Client[19] quit!
+2025-09-04 11:56:57.093449 [info] : ========== Server init ==========
+2025-09-04 11:56:57.093455 [info] : Port:1316, OpenLinger: false
+2025-09-04 11:56:57.093476 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 11:56:57.093479 [info] : LogSys level: 1
+2025-09-04 11:56:57.093481 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 11:56:57.093559 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 11:56:57.093574 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 11:56:57.093587 [info] : ========== Server start ==========
+2025-09-04 11:57:02.458401 [info] : Client[18](127.0.0.1:57908) in, userCount:1
+2025-09-04 11:57:02.458505 [info] : Client[18] in!
+2025-09-04 11:57:02.461540 [info] : Client[19](127.0.0.1:57920) in, userCount:2
+2025-09-04 11:57:02.461637 [info] : Client[19] in!
+2025-09-04 11:57:02.704762 [info] : Client[20](127.0.0.1:57932) in, userCount:3
+2025-09-04 11:57:02.704862 [info] : Client[20] in!
+2025-09-04 11:58:02.468109 [info] : Client[18] quit!
+2025-09-04 11:58:02.468298 [info] : Client[18](127.0.0.1:57908) quit, UserCount:2
+2025-09-04 11:58:02.468357 [info] : Client[19] quit!
+2025-09-04 11:58:02.468426 [info] : Client[19](127.0.0.1:57920) quit, UserCount:1
+2025-09-04 11:58:02.704777 [info] : Client[20] quit!
+2025-09-04 11:59:04.144809 [info] : ========== Server init ==========
+2025-09-04 11:59:04.144816 [info] : Port:1316, OpenLinger: false
+2025-09-04 11:59:04.144835 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 11:59:04.144875 [info] : LogSys level: 1
+2025-09-04 11:59:04.144889 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 11:59:04.144902 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 11:59:04.144915 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 11:59:04.144928 [info] : ========== Server start ==========
+2025-09-04 11:59:06.156168 [info] : Client[18](127.0.0.1:57994) in, userCount:1
+2025-09-04 11:59:06.156221 [info] : Client[18] in!
+2025-09-04 11:59:06.160321 [info] : Client[19](127.0.0.1:58010) in, userCount:2
+2025-09-04 11:59:06.160363 [info] : Client[19] in!
+2025-09-04 11:59:06.395810 [info] : Client[20](127.0.0.1:58012) in, userCount:3
+2025-09-04 11:59:21.589343 [info] : ========== Server init ==========
+2025-09-04 11:59:21.589350 [info] : Port:1316, OpenLinger: false
+2025-09-04 11:59:21.589352 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 11:59:21.589354 [info] : LogSys level: 1
+2025-09-04 11:59:21.589357 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 11:59:21.589359 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 11:59:21.589361 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 11:59:21.589363 [info] : ========== Server start ==========
+2025-09-04 11:59:29.506531 [info] : Client[18](127.0.0.1:32982) in, userCount:1
+2025-09-04 11:59:29.506713 [info] : Client[18] in!
+2025-09-04 11:59:30.591236 [info] : Client[19](127.0.0.1:39816) in, userCount:2
+2025-09-04 11:59:30.591364 [info] : Client[19] in!
+2025-09-04 12:00:30.591492 [info] : Client[19] quit!
+2025-09-04 12:00:30.591648 [info] : Client[19](127.0.0.1:39816) quit, UserCount:1
+2025-09-04 12:00:33.048217 [error]: No files in upload request, return 400
+2025-09-04 12:00:33.050147 [error]: RequestLine Error: invalid format -> [------WebKitFormBoundarySJeN3rYqqwgET5wR]
+2025-09-04 12:00:33.050311 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:00:33.050478 [error]: HTTP request parse failed, return 400
+2025-09-04 12:00:33.050698 [info] : Client[18] quit!
+2025-09-04 12:00:33.050855 [info] : Client[18](127.0.0.1:32982) quit, UserCount:0
+2025-09-04 12:02:09.574511 [info] : Client[18](127.0.0.1:59772) in, userCount:1
+2025-09-04 12:02:09.574663 [info] : Client[18] in!
+2025-09-04 12:02:09.579364 [error]: No files in upload request, return 400
+2025-09-04 12:02:09.580421 [error]: RequestLine Error: invalid format -> [W-—Î¬‰š™_0Ð«"°¡@è½	à}qÔ‘6ÜÙ;Ù>ò¦[/¼[™\ÖÈÚRÛ²DbHHïÄi#Umi[u§Kç½–?¶e»?žËg3;Cv²q6†AÌl™S‹6V J©ˆ=´¥Á8Í'Q•§­ºnçŸî¾om]ß›w6ŽgeçÈíÈr®³¬*\³ÕëF×§NoL]v.í¬ÞÎ·;i,±Œ×ø4ðg¢jUJf3‡MtDë^½q;ŸÝ=£··ß3&ÔyæÚ™VÚÂ`©7„ŒC…$S˜=øÙYÂÚ2ì£±ör´ylùÈ.b;ciÞâÎ·C5Õ:RµÂþþÐw¡Òºˆh\\þÏrùÜôÓ:”‹iÈÙYK¨á9'˜zÖ¸clîÀybÈæ™v0—gäÁQbDò¨Ì]
+2025-09-04 12:02:09.580450 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:02:09.580468 [error]: HTTP request parse failed, return 400
+2025-09-04 12:02:09.580573 [info] : Client[18] quit!
+2025-09-04 12:02:09.580623 [info] : Client[18](127.0.0.1:59772) quit, UserCount:0
+2025-09-04 12:02:52.911150 [info] : Client[18](127.0.0.1:53564) in, userCount:1
+2025-09-04 12:02:52.911262 [info] : Client[18] in!
+2025-09-04 12:03:01.386935 [error]: No files in upload request, return 400
+2025-09-04 12:03:01.388197 [error]: RequestLine Error: invalid format -> [¦”é†sžÏöfÓËçsYlÙÈæ$u\–HåãT‚:–gâhXëM{Li©€Ý­+3ô¯.§(líÄËC:æóH¡3,*¿æò“Fõu®¸¦mýÌ“mgvÆ×l°…!•š ªÂ$¾ÚÕzV PöÓi¾{'•Ùûbì™ ÎfcÑž4ºy8l$èƒR¤n¯`1RÞX Ù‰>ïäBOr5‚xZ"S8šK—]¯8ßµÄnµ•ñ…ÊÛct6†ÆØ;+ní(Žf¥ƒ‡%¬èÑÿ]
+2025-09-04 12:03:01.388283 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:03:01.388373 [error]: HTTP request parse failed, return 400
+2025-09-04 12:03:01.388650 [info] : Client[18] quit!
+2025-09-04 12:03:01.388815 [info] : Client[18](127.0.0.1:53564) quit, UserCount:0
+2025-09-04 12:03:18.860396 [info] : Client[18](127.0.0.1:56700) in, userCount:1
+2025-09-04 12:03:18.860521 [info] : Client[18] in!
+2025-09-04 12:03:18.863247 [error]: No files in upload request, return 400
+2025-09-04 12:03:18.865355 [error]: RequestLine Error: invalid format -> [-—Î¬‰š™_0Ð«"°¡@è½	à}qÔ‘6ÜÙ;Ù>ò¦[/¼[™\ÖÈÚRÛ²DbHHïÄi#Umi[u§Kç½–?¶e»?žËg3;Cv²q6†AÌl™S‹6V J©ˆ=´¥Á8Í'Q•§­ºnçŸî¾om]ß›w6ŽgeçÈíÈr®³¬*\³ÕëF×§NoL]v.í¬ÞÎ·;i,±Œ×ø4ðg¢jUJf3‡MtDë^½q;ŸÝ=£··ß3&ÔyæÚ™VÚÂ`©7„ŒC…$S˜=øÙYÂÚ2ì£±ör´ylùÈ.b;ciÞâÎ·C5Õ:RµÂþþÐw¡Òºˆh\\þÏrùÜôÓ:”‹iÈÙYK¨á9'˜zÖ¸clîÀybÈæ™v0—gäÁQbDò¨Ì]
+2025-09-04 12:03:18.865441 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:03:18.865558 [error]: HTTP request parse failed, return 400
+2025-09-04 12:03:18.865767 [info] : Client[18] quit!
+2025-09-04 12:03:18.865971 [info] : Client[18](127.0.0.1:56700) quit, UserCount:0
+2025-09-04 12:03:19.110800 [info] : Client[18](127.0.0.1:56708) in, userCount:1
+2025-09-04 12:03:19.110826 [info] : Client[18] in!
+2025-09-04 12:03:28.600553 [error]: No files in upload request, return 400
+2025-09-04 12:03:28.601708 [error]: RequestLine Error: invalid format -> [------WebKitFormBoundary2g7DqeATQEjTVgs1]
+2025-09-04 12:03:28.601790 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:03:28.601886 [error]: HTTP request parse failed, return 400
+2025-09-04 12:03:28.602131 [info] : Client[18] quit!
+2025-09-04 12:03:28.602306 [info] : Client[18](127.0.0.1:56708) quit, UserCount:0
+2025-09-04 12:03:46.619946 [info] : Client[18](127.0.0.1:60808) in, userCount:1
+2025-09-04 12:03:46.620054 [info] : Client[18] in!
+2025-09-04 12:03:53.121661 [error]: No files in upload request, return 400
+2025-09-04 12:03:53.123030 [error]: RequestLine Error: invalid format -> [»—}›¹^Çôö†ú»oùGb;8SŒAµP±ïýº·N³­sŒ3µV®µ;Ùl=ÐÛn¶²ÝyÓp¿ßKÓÜy0ùþ@k&[#viêîÀ“5}üoiì¦äã8Ù³]
+2025-09-04 12:03:53.123117 [error]: RequestLine Error (ET mode, data incomplete)
+2025-09-04 12:03:53.123214 [error]: HTTP request parse failed, return 400
+2025-09-04 12:03:53.123458 [info] : Client[18] quit!
+2025-09-04 12:26:27.092750 [info] : ========== Server init ==========
+2025-09-04 12:26:27.092768 [info] : Port:1316, OpenLinger: false
+2025-09-04 12:26:27.092771 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 12:26:27.092773 [info] : LogSys level: 1
+2025-09-04 12:26:27.092775 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 12:26:27.092792 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 12:26:27.092794 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 12:26:27.092797 [info] : ========== Server start ==========
+2025-09-04 12:26:37.594521 [info] : Client[18](127.0.0.1:46898) in, userCount:1
+2025-09-04 12:26:37.594674 [info] : Client[18] in!
+2025-09-04 12:26:37.597484 [info] : Client[19](127.0.0.1:46914) in, userCount:2
+2025-09-04 12:26:37.597581 [info] : Client[19] in!
+2025-09-04 12:26:37.844109 [info] : Client[20](127.0.0.1:46920) in, userCount:3
+2025-09-04 12:26:37.844212 [info] : Client[20] in!
+2025-09-04 12:26:40.895263 [error]: No files in upload request, return 400
+2025-09-04 12:26:40.896955 [error]: RequestLine Error: invalid format -> [3®5VhÍš¿Fž›‹îJW¼o{¡5cw>Ql¢ö=oJÐëÒ|Å^h÷¢ÚÑ…kØ	tì!¸ÝÄ4ÄkËØäSÚúïûÔŸûÅ9]
+2025-09-04 12:26:40.897038 [error]: RequestLine Error: 3®5VhÍš¿Fž›‹îJW¼o{¡5cw>Ql¢ö=oJÐëÒ|Å^h÷¢ÚÑ…kØ	tì!¸ÝÄ4ÄkËØäSÚúïûÔŸûÅ9
+2025-09-04 12:26:40.897142 [error]: HTTP request parse failed, return 400
+2025-09-04 12:26:40.897382 [info] : Client[19] quit!
+2025-09-04 12:26:40.897646 [info] : Client[19](127.0.0.1:46914) quit, UserCount:2
+2025-09-04 12:27:03.362838 [error]: No files in upload request, return 400
+2025-09-04 12:27:03.363638 [info] : Client[18] quit!
+2025-09-04 12:27:03.363802 [info] : Client[18](127.0.0.1:46898) quit, UserCount:1
+2025-09-04 12:27:37.878067 [info] : Client[20] quit!
+2025-09-04 12:27:37.878223 [info] : Client[20](127.0.0.1:46920) quit, UserCount:0
+2025-09-04 12:39:48.839053 [info] : ========== Server init ==========
+2025-09-04 12:39:48.839060 [info] : Port:1316, OpenLinger: false
+2025-09-04 12:39:48.839062 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 12:39:48.839077 [info] : LogSys level: 1
+2025-09-04 12:39:48.839079 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 12:39:48.839081 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 12:39:48.839083 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 12:39:48.839101 [info] : ========== Server start ==========
+2025-09-04 12:40:00.158886 [info] : Client[18](127.0.0.1:34064) in, userCount:1
+2025-09-04 12:40:00.159010 [info] : Client[18] in!
+2025-09-04 12:40:00.161184 [info] : Client[19](127.0.0.1:34076) in, userCount:2
+2025-09-04 12:40:00.161279 [info] : Client[19] in!
+2025-09-04 12:40:00.426338 [info] : Client[20](127.0.0.1:34082) in, userCount:3
+2025-09-04 12:40:54.611156 [info] : ========== Server init ==========
+2025-09-04 12:40:54.611162 [info] : Port:1316, OpenLinger: false
+2025-09-04 12:40:54.611181 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-09-04 12:40:54.611260 [info] : LogSys level: 1
+2025-09-04 12:40:54.611267 [info] : srcDir: /home/yamin/coding/UIEWebServer/resources
+2025-09-04 12:40:54.611272 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-09-04 12:40:54.611282 [info] : ONNX Model Path: ./models/LPGPNet.onnx
+2025-09-04 12:40:54.611292 [info] : ========== Server start ==========
+2025-09-04 12:40:58.011504 [info] : Client[18](127.0.0.1:60890) in, userCount:1
+2025-09-04 12:40:58.011614 [info] : Client[18] in!
+2025-09-04 12:40:58.015079 [info] : Client[19](127.0.0.1:60902) in, userCount:2
+2025-09-04 12:40:58.015174 [info] : Client[19] in!
+2025-09-04 12:40:58.258256 [info] : Client[20](127.0.0.1:60918) in, userCount:3

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>LPGPNet水下图像增强工具</title>
     <style>
-        /* 你的CSS样式保持不变 */
+        /* 保持原有CSS样式 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -70,11 +70,19 @@
         .btn:active {
             transform: translateY(1px);
         }
+        .btn:disabled {
+            background: #86ADFF;
+            cursor: not-allowed;
+            transform: none;
+        }
         .btn-download {
             background: #36D399;
         }
         .btn-download:hover {
             background: #28A745;
+        }
+        .btn-download:disabled {
+            background: #87E8DE;
         }
         .button-group {
             display: flex;
@@ -119,6 +127,21 @@
             border-radius: 6px;
             overflow: hidden;
             background-color: #fafafa;
+            position: relative;
+        }
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #165DFF;
+            display: none;
         }
         .preview-img {
             max-width: 100%;
@@ -130,6 +153,12 @@
             max-height: 400px;
             object-fit: contain;
         }
+        .error-message {
+            color: #ff4d4f;
+            text-align: center;
+            margin-top: 10px;
+            min-height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -139,8 +168,9 @@
         <div class="upload-section">
             <div class="upload-area">
                 <label for="fileInput" class="btn">选择文件</label>
-                <input type="file" id="fileInput" accept="image/*"> <!-- 暂时先支持图像（视频处理需后端额外逻辑） -->
+                <input type="file" id="fileInput" accept="image/*">
                 <p id="fileInfo">未选择文件</p>
+                <p id="errorMessage" class="error-message"></p>
             </div>
             
             <div class="button-group">
@@ -153,6 +183,7 @@
             <div class="preview-box">
                 <h3>原图</h3>
                 <div class="preview-content">
+                    <div class="loading-indicator" id="originalLoading">加载中...</div>
                     <img id="originalImg" class="preview-img" style="display: none;">
                     <video id="originalVideo" controls style="display: none;"></video>
                 </div>
@@ -160,6 +191,7 @@
             <div class="preview-box">
                 <h3>增强后</h3>
                 <div class="preview-content">
+                    <div class="loading-indicator" id="enhancedLoading">处理中...</div>
                     <img id="enhancedImg" class="preview-img" style="display: none;">
                     <video id="enhancedVideo" controls style="display: none;"></video>
                 </div>
@@ -168,124 +200,202 @@
     </div>
 
     <script>
-        const fileInput = document.getElementById('fileInput');
-        const fileInfo = document.getElementById('fileInfo');
-        const originalImg = document.getElementById('originalImg');
-        const originalVideo = document.getElementById('originalVideo');
-        const enhancedImg = document.getElementById('enhancedImg');
-        const enhancedVideo = document.getElementById('enhancedVideo');
-        const enhanceBtn = document.getElementById('enhanceBtn');
-        const mainDownloadBtn = document.getElementById('mainDownloadBtn');
-        let currentFile = null;
-        let enhancedFileUrl = null;
-
-        // 选择文件后预览（保持不变）
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length === 0) return;
-            currentFile = e.target.files[0];
-            fileInfo.textContent = `已选择: ${currentFile.name} (${formatFileSize(currentFile.size)})`;
+        // 等待DOM完全加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const fileInfo = document.getElementById('fileInfo');
+            const errorMessage = document.getElementById('errorMessage');
+            const originalImg = document.getElementById('originalImg');
+            const originalVideo = document.getElementById('originalVideo');
+            const originalLoading = document.getElementById('originalLoading');
+            const enhancedImg = document.getElementById('enhancedImg');
+            const enhancedVideo = document.getElementById('enhancedVideo');
+            const enhancedLoading = document.getElementById('enhancedLoading');
+            const enhanceBtn = document.getElementById('enhanceBtn');
+            const mainDownloadBtn = document.getElementById('mainDownloadBtn');
             
-            // 隐藏所有预览
-            originalImg.style.display = 'none';
-            originalVideo.style.display = 'none';
-            enhancedImg.style.display = 'none';
-            enhancedVideo.style.display = 'none';
-            mainDownloadBtn.disabled = true;
+            let currentFile = null;
+            let originalFileUrl = null;
+            let enhancedFileUrl = null;
 
-            // 显示原图（暂时只处理图像，视频后续扩展）
-            if (currentFile.type.startsWith('image/')) {
-                const fileUrl = URL.createObjectURL(currentFile);
-                originalImg.src = fileUrl;
-                originalImg.style.display = 'block';
-            } else {
-                alert('暂不支持视频，请选择图像文件（如JPG、PNG）');
-                currentFile = null;
-                fileInfo.textContent = '未选择文件';
-            }
-        });
+            // 选择文件后预览
+            fileInput.addEventListener('change', (e) => {
+                // 重置错误消息
+                errorMessage.textContent = '';
+                
+                if (e.target.files.length === 0) {
+                    currentFile = null;
+                    fileInfo.textContent = '未选择文件';
+                    hideAllPreviews();
+                    return;
+                }
+                
+                currentFile = e.target.files[0];
+                fileInfo.textContent = `已选择: ${currentFile.name} (${formatFileSize(currentFile.size)})`;
+                
+                // 隐藏所有预览
+                hideAllPreviews();
+                
+                // 显示原图
+                if (currentFile.type.startsWith('image/')) {
+                    originalLoading.style.display = 'flex';
+                    
+                    // 释放之前的URL
+                    if (originalFileUrl) {
+                        URL.revokeObjectURL(originalFileUrl);
+                    }
+                    
+                    originalFileUrl = URL.createObjectURL(currentFile);
+                    originalImg.src = originalFileUrl;
+                    
+                    // 图像加载完成后显示
+                    originalImg.onload = function() {
+                        originalLoading.style.display = 'none';
+                        originalImg.style.display = 'block';
+                    };
+                    
+                    // 图像加载失败处理
+                    originalImg.onerror = function() {
+                        originalLoading.style.display = 'none';
+                        errorMessage.textContent = '图像加载失败，请尝试其他图片';
+                        currentFile = null;
+                        fileInfo.textContent = '未选择文件';
+                    };
+                } else {
+                    alert('暂不支持视频，请选择图像文件（如JPG、PNG）');
+                    currentFile = null;
+                    fileInfo.textContent = '未选择文件';
+                }
+            });
 
-        // 关键修改：增强按钮点击事件（替换模拟逻辑为真实后端请求）
-        enhanceBtn.addEventListener('click', async () => {
-            if (!currentFile) {
-                alert('请先选择图像文件');
-                return;
-            }
-
-            // 显示加载状态
-            enhanceBtn.disabled = true;
-            enhanceBtn.textContent = '增强中...';
-            mainDownloadBtn.disabled = true;
-
-            try {
-                // 1. 创建FormData，包装要上传的文件（name需与后端接收参数一致）
-                const formData = new FormData();
-                formData.append('file', currentFile); // 后端接收时用"image"作为参数名
-
-                // 2. 发送POST请求到后端
-                const response = await fetch('/upload', { // 后端增强接口路径是 /upload
-                    method: 'POST',
-                    body: formData, // 自动设置Content-Type: multipart/form-data
-                });
-
-                // 3. 校验响应状态
-                if (!response.ok) {
-                    throw new Error(`后端请求失败: ${response.statusText}`);
+            // 增强按钮点击事件
+            enhanceBtn.addEventListener('click', async () => {
+                if (!currentFile) {
+                    errorMessage.textContent = '请先选择图像文件';
+                    return;
                 }
 
-                // 4. 处理后端返回的增强后图像（假设后端返回Blob格式）
-                const enhancedBlob = await response.blob(); // 接收二进制图像数据
-                enhancedFileUrl = URL.createObjectURL(enhancedBlob); // 转换为前端可预览的URL
+                // 显示加载状态
+                enhanceBtn.disabled = true;
+                enhanceBtn.textContent = '增强中...';
+                mainDownloadBtn.disabled = true;
+                errorMessage.textContent = '';
+                enhancedLoading.style.display = 'flex';
+                hideEnhancedPreview();
 
-                // 5. 显示增强后的图像
-                enhancedImg.src = enhancedFileUrl;
-                enhancedImg.style.display = 'block';
+                try {
+                    // 创建FormData，包装要上传的文件
+                    const formData = new FormData();
+                    formData.append('file', currentFile);
+                    
+                    console.log('准备上传文件:', currentFile);
+                    
+                    // 发送POST请求到后端
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData,
+                        // 不手动设置Content-Type，让浏览器自动处理multipart/form-data
+                    });
 
-                // 6. 启用下载按钮
-                mainDownloadBtn.disabled = false;
+                    console.log('服务器响应状态:', response.status);
+                    
+                    // 校验响应状态
+                    if (!response.ok) {
+                        // 尝试获取服务器返回的错误信息
+                        let errorText = '';
+                        try {
+                            errorText = await response.text();
+                        } catch (e) {
+                            errorText = `HTTP错误: ${response.status}`;
+                        }
+                        throw new Error(errorText);
+                    }
 
-            } catch (err) {
-                // 错误处理
-                alert(`增强失败: ${err.message}`);
-                console.error('增强过程出错:', err);
+                    // 处理后端返回的增强后图像
+                    const enhancedBlob = await response.blob();
+                    console.log('收到增强后的图像，类型:', enhancedBlob.type);
+                    
+                    // 释放之前的URL
+                    if (enhancedFileUrl) {
+                        URL.revokeObjectURL(enhancedFileUrl);
+                    }
+                    
+                    enhancedFileUrl = URL.createObjectURL(enhancedBlob);
+                    enhancedImg.src = enhancedFileUrl;
+                    
+                    // 增强图像加载完成后显示
+                    enhancedImg.onload = function() {
+                        enhancedLoading.style.display = 'none';
+                        enhancedImg.style.display = 'block';
+                        mainDownloadBtn.disabled = false;
+                    };
+                    
+                    // 增强图像加载失败处理
+                    enhancedImg.onerror = function() {
+                        throw new Error('增强后的图像加载失败');
+                    };
 
-            } finally {
-                // 恢复按钮状态（无论成功/失败都执行）
-                enhanceBtn.disabled = false;
-                enhanceBtn.textContent = '增强';
+                } catch (err) {
+                    // 错误处理
+                    console.error('增强过程出错:', err);
+                    errorMessage.textContent = `增强失败: ${err.message}`;
+                    enhancedLoading.style.display = 'none';
+                } finally {
+                    // 恢复按钮状态
+                    enhanceBtn.disabled = false;
+                    enhanceBtn.textContent = '增强';
+                }
+            });
+
+            // 下载按钮点击事件
+            mainDownloadBtn.addEventListener('click', () => {
+                if (!enhancedFileUrl || !currentFile) return;
+
+                // 生成增强后的文件名
+                const originalName = currentFile.name;
+                const dotIndex = originalName.lastIndexOf('.');
+                const fileName = dotIndex !== -1 
+                    ? `${originalName.substring(0, dotIndex)}_enhanced${originalName.substring(dotIndex)}`
+                    : `${originalName}_enhanced`;
+
+                // 创建临时下载链接并触发点击
+                const a = document.createElement('a');
+                a.href = enhancedFileUrl;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                }, 100);
+            });
+
+            // 工具函数：格式化文件大小
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return `${bytes} B`;
+                if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+                return `${(bytes / 1048576).toFixed(1)} MB`;
             }
-        });
 
-        // 下载按钮点击事件（保持不变，但依赖真实的enhancedFileUrl）
-        mainDownloadBtn.addEventListener('click', () => {
-            if (!enhancedFileUrl || !currentFile) return;
+            // 工具函数：隐藏所有预览
+            function hideAllPreviews() {
+                originalImg.style.display = 'none';
+                originalVideo.style.display = 'none';
+                hideEnhancedPreview();
+            }
 
-            // 生成增强后的文件名（如"test_enhanced.jpg"）
-            const originalName = currentFile.name;
-            const dotIndex = originalName.lastIndexOf('.');
-            const fileName = dotIndex !== -1 
-                ? `${originalName.substring(0, dotIndex)}_enhanced${originalName.substring(dotIndex)}`
-                : `${originalName}_enhanced`;
+            // 工具函数：隐藏增强后的预览
+            function hideEnhancedPreview() {
+                enhancedImg.style.display = 'none';
+                enhancedVideo.style.display = 'none';
+            }
 
-            // 创建临时下载链接并触发点击
-            const a = document.createElement('a');
-            a.href = enhancedFileUrl;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        });
-
-        // 格式化文件大小（工具函数，保持不变）
-        function formatFileSize(bytes) {
-            if (bytes < 1024) return `${bytes} B`;
-            if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
-            return `${(bytes / 1048576).toFixed(1)} MB`;
-        }
-
-        // 页面卸载时释放URL（避免内存泄漏）
-        window.addEventListener('beforeunload', () => {
-            if (originalImg.src) URL.revokeObjectURL(originalImg.src);
-            if (enhancedFileUrl) URL.revokeObjectURL(enhancedFileUrl);
+            // 页面卸载时释放URL，避免内存泄漏
+            window.addEventListener('beforeunload', () => {
+                if (originalFileUrl) URL.revokeObjectURL(originalFileUrl);
+                if (enhancedFileUrl) URL.revokeObjectURL(enhancedFileUrl);
+            });
         });
     </script>
 </body>
