@@ -48,7 +48,7 @@ public:
     void Init();
     //核心解析函数
     //从缓冲区 buff 中读取 HTTP 请求数据，按状态逐步解析
-    bool parse(Buffer& buff, int fd); 
+    bool parse(Buffer& buff); 
 
     std::string path() const; //获取请求路径，不可修改（如 /login.html）
     std::string& path(); //获取请求路径的引用，可修改

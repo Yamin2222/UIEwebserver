@@ -77,8 +77,8 @@ private:
     Ort::AllocatorWithDefaultOptions allocator_;
 
     // 模型参数
-    std::vector<const char*> input_node_names_;
-    std::vector<const char*> output_node_names_;
+    std::vector<std::string> input_node_names_; // 改为存储字符串
+    std::vector<std::string> output_node_names_; // 改为存储字符串
     int input_channels_ = 3;  // 默认3通道（RGB/BGR）
     int input_height_ = 0;    // 模型输入高度（从模型获取）
     int input_width_ = 0;     // 模型输入宽度（从模型获取）

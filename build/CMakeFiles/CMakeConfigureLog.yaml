@@ -20,7 +20,6 @@ events:
     names:
       - "uname"
     candidate_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -34,7 +33,6 @@ events:
       - "/home/yamin/anaconda3/bin/"
       - "/usr/local/cuda/bin/"
     searched_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/uname"
       - "/home/yamin/anaconda3/condabin/uname"
       - "/usr/local/sbin/uname"
       - "/usr/local/bin/uname"
@@ -42,7 +40,6 @@ events:
     found: "/usr/bin/uname"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -53,8 +50,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -85,7 +80,6 @@ events:
       - "make"
       - "smake"
     candidate_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -99,7 +93,6 @@ events:
       - "/home/yamin/anaconda3/bin/"
       - "/usr/local/cuda/bin/"
     searched_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/gmake"
       - "/home/yamin/anaconda3/condabin/gmake"
       - "/usr/local/sbin/gmake"
       - "/usr/local/bin/gmake"
@@ -112,7 +105,6 @@ events:
       - "/snap/bin/gmake"
       - "/home/yamin/anaconda3/bin/gmake"
       - "/usr/local/cuda/bin/gmake"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/make"
       - "/home/yamin/anaconda3/condabin/make"
       - "/usr/local/sbin/make"
       - "/usr/local/bin/make"
@@ -120,7 +112,6 @@ events:
     found: "/usr/bin/make"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -131,8 +122,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -161,7 +150,6 @@ events:
       - "icx"
       - "clang"
     candidate_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -175,7 +163,6 @@ events:
       - "/home/yamin/anaconda3/bin/"
       - "/usr/local/cuda/bin/"
     searched_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/cc"
       - "/home/yamin/anaconda3/condabin/cc"
       - "/usr/local/sbin/cc"
       - "/usr/local/bin/cc"
@@ -183,7 +170,6 @@ events:
     found: "/usr/bin/cc"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -194,8 +180,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -225,7 +209,6 @@ events:
     found: "/usr/share/cmake-4.1/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -236,8 +219,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -283,7 +264,6 @@ events:
       - "ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -298,7 +278,6 @@ events:
     found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -309,8 +288,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -334,7 +311,6 @@ events:
       - "ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -349,7 +325,6 @@ events:
     found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -360,8 +335,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -385,7 +358,6 @@ events:
       - "strip"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -400,7 +372,6 @@ events:
     found: "/usr/bin/strip"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -411,8 +382,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -436,7 +405,6 @@ events:
       - "ld"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -451,7 +419,6 @@ events:
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -462,8 +429,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -487,7 +452,6 @@ events:
       - "nm"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -502,7 +466,6 @@ events:
     found: "/usr/bin/nm"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -513,8 +476,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -538,7 +499,6 @@ events:
       - "objdump"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -553,7 +513,6 @@ events:
     found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -564,8 +523,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -589,7 +546,6 @@ events:
       - "objcopy"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -604,7 +560,6 @@ events:
     found: "/usr/bin/objcopy"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -615,8 +570,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -640,7 +593,6 @@ events:
       - "readelf"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -655,7 +607,6 @@ events:
     found: "/usr/bin/readelf"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -666,8 +617,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -691,7 +640,6 @@ events:
       - "dlltool"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -705,7 +653,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/dlltool"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/dlltool"
       - "/home/yamin/anaconda3/condabin/dlltool"
       - "/usr/local/sbin/dlltool"
       - "/usr/local/bin/dlltool"
@@ -720,7 +667,6 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -731,8 +677,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -756,7 +700,6 @@ events:
       - "addr2line"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -771,7 +714,6 @@ events:
     found: "/usr/bin/addr2line"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -782,8 +724,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -807,7 +747,6 @@ events:
       - "tapi"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -821,7 +760,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/tapi"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/tapi"
       - "/home/yamin/anaconda3/condabin/tapi"
       - "/usr/local/sbin/tapi"
       - "/usr/local/bin/tapi"
@@ -836,7 +774,6 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -847,8 +784,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -875,7 +810,6 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -889,7 +823,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/gcc-ar-13.1"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/gcc-ar-13.1"
       - "/home/yamin/anaconda3/condabin/gcc-ar-13.1"
       - "/usr/local/sbin/gcc-ar-13.1"
       - "/usr/local/bin/gcc-ar-13.1"
@@ -904,7 +837,6 @@ events:
     found: "/usr/bin/gcc-ar-13"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -915,8 +847,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -943,7 +873,6 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -957,7 +886,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/gcc-ranlib-13.1"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/gcc-ranlib-13.1"
       - "/home/yamin/anaconda3/condabin/gcc-ranlib-13.1"
       - "/usr/local/sbin/gcc-ranlib-13.1"
       - "/usr/local/bin/gcc-ranlib-13.1"
@@ -972,7 +900,6 @@ events:
     found: "/usr/bin/gcc-ranlib-13"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -983,8 +910,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -1020,7 +945,6 @@ events:
     found: "/usr/bin/c++"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -1031,8 +955,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -1062,7 +984,6 @@ events:
     found: "/usr/share/cmake-4.1/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -1073,8 +994,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -1123,7 +1042,6 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -1137,7 +1055,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/gcc-ar-13.1"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/gcc-ar-13.1"
       - "/home/yamin/anaconda3/condabin/gcc-ar-13.1"
       - "/usr/local/sbin/gcc-ar-13.1"
       - "/usr/local/bin/gcc-ar-13.1"
@@ -1152,7 +1069,6 @@ events:
     found: "/usr/bin/gcc-ar-13"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -1163,8 +1079,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
   -
@@ -1191,7 +1105,6 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -1205,7 +1118,6 @@ events:
       - "/usr/local/cuda/bin/"
     searched_directories:
       - "/usr/bin/gcc-ranlib-13.1"
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/gcc-ranlib-13.1"
       - "/home/yamin/anaconda3/condabin/gcc-ranlib-13.1"
       - "/usr/local/sbin/gcc-ranlib-13.1"
       - "/usr/local/bin/gcc-ranlib-13.1"
@@ -1220,7 +1132,6 @@ events:
     found: "/usr/bin/gcc-ranlib-13"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -1233,8 +1144,6 @@ events:
         - "/snap/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
   -
     kind: "try_compile-v1"
     backtrace:
@@ -1244,8 +1153,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN"
-      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN"
+      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC"
+      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1254,13 +1163,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN'
+        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_edcca/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_edcca.dir/build.make CMakeFiles/cmTC_edcca.dir/build
-        make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN'
-        Building C object CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_44169/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_44169.dir/build.make CMakeFiles/cmTC_44169.dir/build
+        make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC'
+        Building C object CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         Target: x86_64-linux-gnu
@@ -1268,8 +1177,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_edcca.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccEteqTh.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_44169.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cctlNkzd.s
         GNU C17 (Ubuntu 13.1.0-8ubuntu1~20.04.2) version 13.1.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.1.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.22.1-GMP
         
@@ -1286,14 +1195,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: f0b3c90e0f11c3d406d33a12053911f6
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/'
-         as -v --64 -o CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o /tmp/ccEteqTh.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/'
+         as -v --64 -o CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o /tmp/cctlNkzd.s
         GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_edcca
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_edcca.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_44169
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_44169.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -1304,14 +1213,14 @@ events:
         gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_edcca' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_edcca.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv73DzM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_edcca /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_44169' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_44169.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cchinKKG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_44169 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
         collect2 version 13.1.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv73DzM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_edcca /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cchinKKG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_44169 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Ubuntu) 2.34
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_edcca' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_edcca.'
-        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -o cmTC_edcca
-        make[1]: Leaving directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_44169' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_44169.'
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -o cmTC_44169
+        make[1]: Leaving directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC'
         
       exitCode: 0
   -
@@ -1346,13 +1255,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN']
+        ignore line: [Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_edcca/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_edcca.dir/build.make CMakeFiles/cmTC_edcca.dir/build]
-        ignore line: [make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-qrOviN']
-        ignore line: [Building C object CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_44169/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_44169.dir/build.make CMakeFiles/cmTC_44169.dir/build]
+        ignore line: [make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-xS5RtC']
+        ignore line: [Building C object CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [Target: x86_64-linux-gnu]
@@ -1360,8 +1269,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_edcca.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccEteqTh.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.1/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_44169.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cctlNkzd.s]
         ignore line: [GNU C17 (Ubuntu 13.1.0-8ubuntu1~20.04.2) version 13.1.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.1.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.22.1-GMP]
         ignore line: []
@@ -1378,14 +1287,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: f0b3c90e0f11c3d406d33a12053911f6]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o /tmp/ccEteqTh.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o /tmp/cctlNkzd.s]
         ignore line: [GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_edcca]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_edcca.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_44169]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_44169.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -1396,13 +1305,13 @@ events:
         ignore line: [gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_edcca' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_edcca.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv73DzM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_edcca /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_44169' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_44169.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cchinKKG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_44169 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccv73DzM.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cchinKKG.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1420,7 +1329,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_edcca] ==> ignore
+          arg [cmTC_44169] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -1433,7 +1342,7 @@ events:
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -1448,7 +1357,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 13.1.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv73DzM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_edcca /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_edcca.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cchinKKG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_44169 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_44169.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'C': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -1486,8 +1395,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN"
-      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN"
+      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC"
+      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1497,13 +1406,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN'
+        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_98851/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_98851.dir/build.make CMakeFiles/cmTC_98851.dir/build
-        make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN'
-        Building CXX object CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_98e7d/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_98e7d.dir/build.make CMakeFiles/cmTC_98e7d.dir/build
+        make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC'
+        Building CXX object CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         Target: x86_64-linux-gnu
@@ -1511,8 +1420,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_98851.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccuKxEdH.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_98e7d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc7xsbRD.s
         GNU C++17 (Ubuntu 13.1.0-8ubuntu1~20.04.2) version 13.1.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.1.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.22.1-GMP
         
@@ -1533,14 +1442,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 391880e3be75f4e1ac78bddcb50fff0c
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/'
-         as -v --64 -o CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccuKxEdH.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/'
+         as -v --64 -o CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc7xsbRD.s
         GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_98851
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98851.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_98e7d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98e7d.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -1551,14 +1460,14 @@ events:
         gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98851' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98851.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccG2cAe9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98851 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98e7d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98e7d.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQSRCj2.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98e7d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
         collect2 version 13.1.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccG2cAe9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98851 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQSRCj2.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98e7d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Ubuntu) 2.34
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98851' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98851.'
-        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_98851
-        make[1]: Leaving directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98e7d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98e7d.'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_98e7d
+        make[1]: Leaving directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC'
         
       exitCode: 0
   -
@@ -1599,13 +1508,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN']
+        ignore line: [Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_98851/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_98851.dir/build.make CMakeFiles/cmTC_98851.dir/build]
-        ignore line: [make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-INPxKN']
-        ignore line: [Building CXX object CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_98e7d/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_98e7d.dir/build.make CMakeFiles/cmTC_98e7d.dir/build]
+        ignore line: [make[1]: Entering directory '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-dc1EbC']
+        ignore line: [Building CXX object CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [Target: x86_64-linux-gnu]
@@ -1613,8 +1522,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_98851.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccuKxEdH.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_98e7d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc7xsbRD.s]
         ignore line: [GNU C++17 (Ubuntu 13.1.0-8ubuntu1~20.04.2) version 13.1.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.1.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.22.1-GMP]
         ignore line: []
@@ -1635,14 +1544,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 391880e3be75f4e1ac78bddcb50fff0c]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccuKxEdH.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc7xsbRD.s]
         ignore line: [GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_98851]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98851.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_98e7d]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98e7d.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -1653,13 +1562,13 @@ events:
         ignore line: [gcc version 13.1.0 (Ubuntu 13.1.0-8ubuntu1~20.04.2) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98851' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98851.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccG2cAe9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98851 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98e7d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_98e7d.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQSRCj2.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98e7d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccG2cAe9.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccQSRCj2.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1677,7 +1586,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_98851] ==> ignore
+          arg [cmTC_98e7d] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -1690,7 +1599,7 @@ events:
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -1701,7 +1610,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 13.1.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccG2cAe9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98851 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98851.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQSRCj2.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_98e7d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -v CMakeFiles/cmTC_98e7d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'CXX': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -1774,14 +1683,6 @@ events:
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/OpenCVConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/opencv-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
         path: "/home/yamin/anaconda3/condabin/OpenCVConfig.cmake"
         mode: "config"
         reason: "no_exist"
@@ -1803,7 +1704,6 @@ events:
       version: "4.5.5"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -1814,8 +1714,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
       CMAKE_INSTALL_PREFIX: "/usr/local"
@@ -1839,8 +1737,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO"
-      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO"
+      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA"
+      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1849,25 +1747,25 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO'
+        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2b8cf/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_2b8cf.dir/build.make CMakeFiles/cmTC_2b8cf.dir/build
-        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO”
-        Building C object CMakeFiles/cmTC_2b8cf.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_2b8cf.dir/src.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO/src.c
-        Linking C executable cmTC_2b8cf
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b8cf.dir/link.txt --verbose=1
-        /usr/bin/ld: CMakeFiles/cmTC_2b8cf.dir/src.c.o: in function `main':
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_fa1ba/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_fa1ba.dir/build.make CMakeFiles/cmTC_fa1ba.dir/build
+        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA”
+        Building C object CMakeFiles/cmTC_fa1ba.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_fa1ba.dir/src.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA/src.c
+        Linking C executable cmTC_fa1ba
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa1ba.dir/link.txt --verbose=1
+        /usr/bin/ld: CMakeFiles/cmTC_fa1ba.dir/src.c.o: in function `main':
         src.c:(.text+0x46): undefined reference to `pthread_create'
         /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
         /usr/bin/ld: src.c:(.text+0x5e): undefined reference to `pthread_cancel'
         /usr/bin/ld: src.c:(.text+0x6f): undefined reference to `pthread_join'
         collect2: error: ld returned 1 exit status
-        /usr/bin/cc CMakeFiles/cmTC_2b8cf.dir/src.c.o -o cmTC_2b8cf
-        make[1]: *** [CMakeFiles/cmTC_2b8cf.dir/build.make:102：cmTC_2b8cf] 错误 1
-        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-HvzoPO”
-        make: *** [Makefile:134：cmTC_2b8cf/fast] 错误 2
+        /usr/bin/cc CMakeFiles/cmTC_fa1ba.dir/src.c.o -o cmTC_fa1ba
+        make[1]: *** [CMakeFiles/cmTC_fa1ba.dir/build.make:102：cmTC_fa1ba] 错误 1
+        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-8Cy4EA”
+        make: *** [Makefile:134：cmTC_fa1ba/fast] 错误 2
         
       exitCode: 2
   -
@@ -1880,8 +1778,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP"
-      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP"
+      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x"
+      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1890,21 +1788,21 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP'
+        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9f368/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_9f368.dir/build.make CMakeFiles/cmTC_9f368.dir/build
-        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP”
-        Building C object CMakeFiles/cmTC_9f368.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_9f368.dir/CheckFunctionExists.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP/CheckFunctionExists.c
-        Linking C executable cmTC_9f368
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f368.dir/link.txt --verbose=1
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_8a561/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_8a561.dir/build.make CMakeFiles/cmTC_8a561.dir/build
+        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x”
+        Building C object CMakeFiles/cmTC_8a561.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_8a561.dir/CheckFunctionExists.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x/CheckFunctionExists.c
+        Linking C executable cmTC_8a561
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8a561.dir/link.txt --verbose=1
         /usr/bin/ld: 找不到 -lpthreads
         collect2: error: ld returned 1 exit status
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_9f368.dir/CheckFunctionExists.c.o -o cmTC_9f368  -lpthreads
-        make[1]: *** [CMakeFiles/cmTC_9f368.dir/build.make:102：cmTC_9f368] 错误 1
-        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-FzDscP”
-        make: *** [Makefile:134：cmTC_9f368/fast] 错误 2
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_8a561.dir/CheckFunctionExists.c.o -o cmTC_8a561  -lpthreads
+        make[1]: *** [CMakeFiles/cmTC_8a561.dir/build.make:102：cmTC_8a561] 错误 1
+        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-i2PB4x”
+        make: *** [Makefile:134：cmTC_8a561/fast] 错误 2
         
       exitCode: 2
   -
@@ -1917,8 +1815,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP"
-      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP"
+      source: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA"
+      binary: "/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1927,17 +1825,17 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP'
+        Change Dir: '/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_dade5/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_dade5.dir/build.make CMakeFiles/cmTC_dade5.dir/build
-        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP”
-        Building C object CMakeFiles/cmTC_dade5.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_dade5.dir/CheckFunctionExists.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP/CheckFunctionExists.c
-        Linking C executable cmTC_dade5
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dade5.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_dade5.dir/CheckFunctionExists.c.o -o cmTC_dade5  -lpthread
-        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-TdRIRP”
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2b195/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_2b195.dir/build.make CMakeFiles/cmTC_2b195.dir/build
+        make[1]: 进入目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA”
+        Building C object CMakeFiles/cmTC_2b195.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_2b195.dir/CheckFunctionExists.c.o -c /home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA/CheckFunctionExists.c
+        Linking C executable cmTC_2b195
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b195.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_2b195.dir/CheckFunctionExists.c.o -o cmTC_2b195  -lpthread
+        make[1]: 离开目录“/home/yamin/coding/UIEWebServer/build/CMakeFiles/CMakeScratch/TryCompile-5mVnGA”
         
       exitCode: 0
   -
@@ -1958,7 +1856,6 @@ events:
     names:
       - "mysqlclient"
     candidate_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -1990,7 +1887,6 @@ events:
       - "/opt/"
       - "/usr/lib/X11/"
     searched_directories:
-      - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli/"
       - "/home/yamin/anaconda3/condabin/"
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -2009,7 +1905,6 @@ events:
     found: "/usr/lib/x86_64-linux-gnu/libmysqlclient.so"
     search_context:
       ENV{PATH}:
-        - "/home/yamin/.vscode-server/cli/servers/Stable-e3550cfac4b63ca4eafca7b601f0d2885817fd1f/server/bin/remote-cli"
         - "/home/yamin/anaconda3/condabin"
         - "/usr/local/sbin"
         - "/usr/local/bin"
@@ -2020,8 +1915,6 @@ events:
         - "/usr/games"
         - "/usr/local/games"
         - "/snap/bin"
-        - "/home/yamin/anaconda3/bin"
-        - "/usr/local/cuda/bin"
         - "/home/yamin/anaconda3/bin"
         - "/usr/local/cuda/bin"
       CMAKE_INSTALL_PREFIX: "/usr/local"

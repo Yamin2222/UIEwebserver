@@ -116,8 +116,29 @@ bool HttpConn::process() {
         return false;
     }
 
+    // 打印前 N 字节原始请求，避免二进制乱码
+    size_t print_len = std::min(readBuff_.ReadableBytes(), (size_t)8192); // 前8KB
+    std::string raw_request(readBuff_.Peek(), print_len);
+
+    // 将不可打印字符替换为可显示字符
+    std::string formatted_request;
+    for (char c : raw_request) {
+        if (c == '\r') {
+            formatted_request += "\\r";
+        } else if (c == '\n') {
+            formatted_request += "\\n\n"; // 换行显示
+        } else if (c < 32 || c > 126) {
+            formatted_request += "?";     // 不可打印字符替换为 ?
+        } else {
+            formatted_request += c;
+        }
+    }
+
+    LOG_DEBUG("===== Full HTTP request (first %zu bytes) =====\n%s",
+              print_len, formatted_request.c_str());
+
     // 步骤1：解析HTTP请求（解析失败返回400错误页面）
-    if (!request_.parse(readBuff_, GetFd())) {
+    if (!request_.parse(readBuff_)) {
         std::string error_path = "/400.html";
         response_.Init(srcDir, error_path, false, 400);
         response_.MakeResponse(writeBuff_);

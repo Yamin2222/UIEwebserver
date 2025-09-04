@@ -33,130 +33,82 @@ bool HttpRequest::IsKeepAlive() const {
 
 //核心解析函数
 //从缓冲区buff中读取 HTTP 请求数据，按状态逐步解析
-bool HttpRequest::parse(Buffer& buff, int fd) {
-    const char CRLF[] = "\r\n";
-    bool is_parse_continue = true; // 标记是否需要继续解析（无错误）
+bool HttpRequest::parse(Buffer& buff) {
+    while (buff.ReadableBytes() > 0 && state_ != FINISH) {
+        const char* crlf = std::search(buff.Peek(), buff.BeginWriteConst(), "\r\n", "\r\n" + 2);
 
-    // 1. 解析请求行（仅在 REQUEST_LINE 状态处理）
-    if (state_ == REQUEST_LINE && buff.ReadableBytes() > 0) {
-        const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
-        
-        // 情况1：请求行不完整（未找到 CRLF），等待更多数据
-        if (lineEnd == buff.BeginWriteConst()) {
-            LOG_DEBUG("RequestLine incomplete, wait for more data");
-            return is_parse_continue; // 返回 true，无错误
-        }
+        switch (state_) {
+            case REQUEST_LINE: {
+                if (crlf == buff.BeginWriteConst()) return false; // 请求行不完整
+                std::string line(buff.Peek(), crlf);
+                // 打印请求行
+                std::string printable;
+                for (char c : line) printable += (c >= 32 && c <= 126) ? c : '?';
+                LOG_DEBUG("Request Line: %s", printable.c_str());
 
-        // 情况2：请求行完整，解析
-        std::string requestLine(buff.Peek(), lineEnd);
-        if (!ParseRequestLine_(requestLine)) {
-            LOG_ERROR("RequestLine Error: invalid format -> [%s]", requestLine.c_str());
-            is_parse_continue = false; // 解析出错，返回 false
-        } else {
-            // 解析成功：移动缓冲区指针，切换到 HEADERS 状态
-            buff.RetrieveUntil(lineEnd + 2);
-            state_ = HEADERS;
-            ParsePath_(); // 处理路径（如 / → /index.html）
-        }
-    }
-
-    // 2. 解析请求头（仅在 HEADERS 状态处理，且上一步无错误）
-    if (state_ == HEADERS && is_parse_continue && buff.ReadableBytes() > 0) {
-        while (true) {
-            const char* lineEnd = search(buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
-            
-            // 情况1：当前行不完整，等待更多数据
-            if (lineEnd == buff.BeginWriteConst()) {
-                LOG_DEBUG("Headers incomplete, wait for more data");
+                if (!ParseRequestLine_(line)) return false;
+                buff.RetrieveUntil(crlf + 2);
+                state_ = HEADERS;
                 break;
             }
 
-            // 情况2：当前行完整，提取并解析
-            std::string line(buff.Peek(), lineEnd);
-            buff.RetrieveUntil(lineEnd + 2);
+            case HEADERS: {
+                if (crlf == buff.BeginWriteConst()) return false; // 请求头不完整
+                std::string line(buff.Peek(), crlf);
+                buff.RetrieveUntil(crlf + 2);
 
-            // 空行 → 请求头结束，切换状态
-            if (line.empty()) {
-                if (method_ == "POST") {
-                    // POST 请求：根据 Content-Type 判断是否需要解析 body
-                    if (header_.count("Content-Type") && 
-                        header_["Content-Type"].find("multipart/form-data") != std::string::npos) {
-                        state_ = BODY; // 需要解析 multipart body
+                if (line.empty()) {
+                    // 请求头结束
+                    if (method_ == "POST") {
+                        if (IsMultipart()) {
+                            multipart_boundary_ = GetMultipartBoundary_();
+                            LOG_DEBUG("Detected multipart request. Boundary: %s", multipart_boundary_.c_str());
+                        }
+                        state_ = BODY;
                     } else {
-                        state_ = FINISH; // 无 body 或非 multipart，解析完成
+                        state_ = FINISH;
                     }
                 } else {
-                    // GET 等请求：无 body，解析完成
-                    state_ = FINISH;
+                    // 打印每个 header
+                    std::string printable;
+                    for (char c : line) printable += (c >= 32 && c <= 126) ? c : '?';
+                    LOG_DEBUG("Header: %s", printable.c_str());
+                    ParseHeader_(line);
                 }
                 break;
-            } else {
-                // 非空行 → 解析请求头（如 Content-Type、Content-Length）
-                ParseHeader_(line);
-            }
-        }
-    }
-
-    // 3. 解析请求体（仅在 BODY 状态处理，且上一步无错误）
-    if (state_ == BODY && is_parse_continue) {
-        // 第一步：检查是否有 Content-Length（multipart 必须包含）
-        if (header_.count("Content-Length") == 0) {
-            LOG_ERROR("POST request missing Content-Length header");
-            is_parse_continue = false;
-            return is_parse_continue;
-        }
-
-        // 第二步：解析 Content-Length（防止无效值）
-        size_t content_length = 0;
-        try {
-            content_length = std::stoull(header_["Content-Length"]);
-        } catch (...) {
-            LOG_ERROR("Invalid Content-Length: %s", header_["Content-Length"].c_str());
-            is_parse_continue = false;
-            return is_parse_continue;
-        }
-
-        // 第三步：确保读取到完整的 body 数据（核心：适配 ET 模式）
-        while (buff.ReadableBytes() < content_length) {
-            // 非 ET 模式：数据不完整，等待下次触发（不主动读）
-            if (!isET_) {
-                LOG_DEBUG("Non-ET mode: body incomplete (current: %zu, need: %zu)",
-                          buff.ReadableBytes(), content_length);
-                break;
             }
 
-            // ET 模式：主动循环读取，直到数据足够或出错
-            ssize_t read_len = buff.ReadFd(fd, nullptr); // 需 Buffer 类支持 GetFd()
-            if (read_len <= 0) {
-                // 读取失败（EAGAIN 是正常情况，其他是错误）
-                if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                    LOG_DEBUG("ET mode: no more data (EAGAIN), wait for next event");
-                    break;
+            case BODY: {
+                // 读取 body 到成员变量
+                body_.assign(buff.Peek(), buff.ReadableBytes());
+                // 打印 body 前 256 字节
+                size_t print_len = std::min(body_.size(), (size_t)256);
+                std::string snippet;
+                for (size_t i = 0; i < print_len; ++i) snippet += (body_[i] >= 32 && body_[i] <= 126) ? body_[i] : '?';
+                LOG_DEBUG("Body (first %zu bytes): %s", print_len, snippet.c_str());
+
+                buff.RetrieveAll(); // 清空缓冲区
+
+                if (IsMultipart()) {
+                    ParseMultipartBody_(); // 文件解析
+                    LOG_DEBUG("Multipart files parsed, count: %zu", files_.size());
                 } else {
-                    LOG_ERROR("ET mode: read body failed, errno: %d", errno);
-                    is_parse_continue = false;
-                    return is_parse_continue;
+                    ParsePost_();          // 普通 POST 表单
                 }
+                state_ = FINISH;
+                break;
             }
-            LOG_DEBUG("ET mode: read %zd bytes, total readable: %zu",
-                      read_len, buff.ReadableBytes());
-        }
 
-        // 第四步：数据足够，解析 body
-        if (buff.ReadableBytes() >= content_length) {
-            body_.assign(buff.Peek(), content_length);
-            buff.Retrieve(content_length); // 移动缓冲区指针，释放已解析数据
-            ParseBody_(body_); // 解析 multipart 数据（提取文件）
-            state_ = FINISH; // 标记解析完成
-            LOG_DEBUG("Body parsed successfully, size: %zu bytes", body_.size());
-        } else {
-            LOG_DEBUG("Body still incomplete, wait for more data");
+            case FINISH:
+                return true;
         }
     }
 
-    // 返回值语义：true = 无错误（可继续解析），false = 解析出错
-    return is_parse_continue;
+    // 如果还没解析完但到达循环末尾
+    if (state_ == FINISH) return true;
+    return false;
 }
+
 
 //解析简化路径（如果需要）
 void HttpRequest::ParsePath_() {
@@ -175,12 +127,13 @@ void HttpRequest::ParsePath_() {
 }
 
 bool HttpRequest::ParseRequestLine_(const string& line) {
-    // 优化后正则：
-    // 1. ([A-Z]+)：仅匹配大写请求方法（POST/GET/PUT等，符合HTTP规范）
-    // 2. \\s+：匹配1个及以上空格（兼容浏览器连续空格）
-    // 3. ([^ ]+)：匹配路径（无空格，如/upload）
-    // 4. HTTP/([0-9.]+)：严格匹配版本号（如1.1、1.0）
-    regex patten("^([A-Z]+)\\s+([^ ]+)\\s+HTTP/([0-9.]+)$");
+    // 修复后的正则表达式：
+    // ^([A-Z]+)：行开始，匹配大写请求方法（POST、GET等）
+    // \s+：1个及以上空白字符（空格或制表符）
+    // ([^\s]+)：匹配路径（任意非空白字符，支持 ?、# 等）
+    // \s+：1个及以上空白字符
+    // HTTP/([0-9.]+)$：匹配 HTTP/版本号（如 HTTP/1.1），并确保行结束
+    regex patten("^([A-Z]+)\\s+([^\\s]+)\\s+HTTP/([0-9.]+)$");
     smatch subMatch;
 
     if (regex_match(line, subMatch, patten)) {
@@ -197,7 +150,6 @@ bool HttpRequest::ParseRequestLine_(const string& line) {
     LOG_ERROR("RequestLine Error: invalid format -> [%s]", line.c_str());
     return false;
 }
-
 void HttpRequest::ParseHeader_(const string& line) {
     //.表示任意字符
     regex patten("^([^:]*): ?(.*)$");
@@ -279,21 +231,38 @@ std::string HttpRequest::GetMultipartBoundary_() const {
         return "";
     }
     const std::string& content_type = it->second;
+    
+    // 打印完整的 Content-Type 头，帮助调试
+    LOG_DEBUG("Content-Type header: %s", content_type.c_str());
+    
     // 匹配 "boundary=" 后的分隔符（支持可选的引号，如 boundary="----xxx"）
     std::regex patten("boundary=(\"?)([^\";]+)\\1");
     std::smatch subMatch;
     if (regex_search(content_type, subMatch, patten) && subMatch.size() >= 3) {
-        // 分隔符需在前后加 "--"（前端传递的是 "----xxx"，解析后需补全为 "--xxxx" 用于分割）
-        return "--" + subMatch[2].str();
+        std::string boundary = subMatch[2].str();
+        LOG_DEBUG("Extracted raw boundary: %s", boundary.c_str());
+        
+        // 修正：根据HTTP规范，boundary前面应该加上两个连字符 "--"
+        // 但是有些浏览器可能已经包含了前缀，我们需要检查
+        if (boundary.substr(0, 2) != "--") {
+            boundary = "--" + boundary;
+        }
+        
+        LOG_DEBUG("Final boundary with prefix: %s", boundary.c_str());
+        return boundary;
     }
+    
+    LOG_ERROR("Failed to extract boundary from Content-Type: %s", content_type.c_str());
     return "";
 }
 
 // 2. 解析 multipart/form-data 格式的请求体，提取文件信息
 void HttpRequest::ParseMultipartBody_() {
     if (body_.empty() || multipart_boundary_.empty()) {
+        LOG_DEBUG("ParseMultipartBody_: body empty or boundary empty");
         return;
     }
+    LOG_DEBUG("Parsing multipart body, body size: %zu, boundary: %s", body_.size(), multipart_boundary_.c_str());
 
     const std::string& boundary = multipart_boundary_;
     const std::string end_boundary = boundary + "--"; // 结束分隔符（比普通分隔符多一个 "--"）
@@ -303,17 +272,59 @@ void HttpRequest::ParseMultipartBody_() {
     size_t pos = 0;
     const size_t body_len = body_.size();
 
+    // 修复：添加调试信息，打印前100个字符的实际边界字符
+    if (body_len > 100) {
+        LOG_DEBUG("Body starts with: %.100s", body_.c_str());
+    } else {
+        LOG_DEBUG("Body starts with: %s", body_.c_str());
+    }
+
+    // 修复：处理Firefox和Chrome的boundary差异
+    // Firefox可能发送的boundary格式为"--boundary"，而代码期望的是"boundary"
+    std::string alt_boundary = boundary;
+    if (boundary.compare(0, 2, "--") == 0) {
+        // 如果boundary已经以"--"开头，尝试去掉"--"
+        alt_boundary = boundary.substr(2);
+        LOG_DEBUG("Alternative boundary without prefix: %s", alt_boundary.c_str());
+    } else {
+        // 如果boundary不以"--"开头，尝试添加"--"
+        alt_boundary = "--" + boundary;
+        LOG_DEBUG("Alternative boundary with prefix: %s", alt_boundary.c_str());
+    }
+
     // 循环解析每个文件块（每个块以 boundary 开头，以 boundary 或 end_boundary 结尾）
     while (pos < body_len) {
-        // 步骤1：找到当前块的边界（从 pos 开始找 boundary）
+        // 步骤1：找到当前块的边界（尝试两种boundary格式）
         size_t boundary_pos = body_.find(boundary, pos);
-        if (boundary_pos == std::string::npos) {
+        size_t alt_boundary_pos = body_.find(alt_boundary, pos);
+        
+        // 使用找到的较早的boundary位置
+        if (boundary_pos == std::string::npos && alt_boundary_pos == std::string::npos) {
+            LOG_DEBUG("No boundary found at position %zu", pos);
             break; // 未找到边界，解析结束
         }
-        pos = boundary_pos + boundary_len; // 跳过边界，指向块内容开始位置
+        
+        // 选择有效的较近的边界位置
+        size_t valid_pos;
+        std::string used_boundary;
+        if (boundary_pos == std::string::npos) {
+            valid_pos = alt_boundary_pos;
+            used_boundary = alt_boundary;
+        } else if (alt_boundary_pos == std::string::npos) {
+            valid_pos = boundary_pos;
+            used_boundary = boundary;
+        } else {
+            valid_pos = std::min(boundary_pos, alt_boundary_pos);
+            used_boundary = (valid_pos == boundary_pos) ? boundary : alt_boundary;
+        }
+        
+        LOG_DEBUG("Found boundary at position %zu, using: %s", valid_pos, used_boundary.c_str());
+        pos = valid_pos + used_boundary.size(); // 跳过边界，指向块内容开始位置
 
         // 步骤2：判断是否为结束边界（若到末尾，退出循环）
-        if (body_.substr(pos, end_boundary_len) == end_boundary) {
+        std::string end_used_boundary = used_boundary + "--";
+        if (pos + 2 <= body_len && body_.substr(pos, 2) == "--") {
+            LOG_DEBUG("End boundary detected at position %zu", pos);
             break;
         }
 
@@ -322,73 +333,125 @@ void HttpRequest::ParseMultipartBody_() {
         std::string field_name; // 表单字段名（如前端 <input name="file"> 的 "file"）
         bool is_file = false;
 
+        // 重要：修复初始的CRLF问题，保证从正确位置开始读取头部
+        if (pos + 2 <= body_len && body_.substr(pos, 2) == "\r\n") {
+            LOG_DEBUG("Skipping initial CRLF at position %zu", pos);
+            pos += 2;
+        }
+
         // 解析块头部的每一行（直到遇到空行，空行后是文件二进制内容）
         while (pos < body_len) {
             // 找当前行的结束（CRLF）
             size_t line_end = body_.find("\r\n", pos);
             if (line_end == std::string::npos) {
+                LOG_DEBUG("No CRLF found at position %zu", pos);
                 break;
             }
             std::string line = body_.substr(pos, line_end - pos);
             pos = line_end + 2; // 跳过 CRLF
 
+            // 打印当前解析的行（改为完整记录行内容）
+            LOG_DEBUG("Parsing header line: [%s]", line.c_str());
+
             // 空行：头部解析结束，后续是文件二进制内容
             if (line.empty()) {
+                LOG_DEBUG("Empty line found, header parsing complete");
                 break;
             }
 
             // 解析 "Content-Disposition" 行（包含表单字段名、文件名）
             if (line.find("Content-Disposition") != std::string::npos) {
+                // 打印完整的Content-Disposition行
+                LOG_DEBUG("Found Content-Disposition: %s", line.c_str());
+                
                 // 匹配表单字段名：name="file"
                 std::regex name_patten("name=\"([^\"]+)\"");
                 std::smatch name_match;
                 if (regex_search(line, name_match, name_patten) && name_match.size() >= 2) {
                     field_name = name_match[1].str();
+                    LOG_DEBUG("Found field name: %s", field_name.c_str());
+                } else {
+                    LOG_ERROR("Failed to extract field name from: %s", line.c_str());
                 }
+                
                 // 匹配文件名：filename="test.jpg"（存在 filename 说明是文件，否则是普通表单字段）
                 std::regex filename_patten("filename=\"([^\"]+)\"");
                 std::smatch filename_match;
                 if (regex_search(line, filename_match, filename_patten) && filename_match.size() >= 2) {
                     file_info.filename = filename_match[1].str();
                     is_file = true; // 标记为文件类型
+                    LOG_DEBUG("Found filename: %s", file_info.filename.c_str());
+                } else if (line.find("filename") != std::string::npos) {
+                    LOG_ERROR("Filename pattern found but not extracted: %s", line.c_str());
                 }
             }
 
             // 解析 "Content-Type" 行（文件的 MIME 类型，如 image/jpeg）
-            if (is_file && line.find("Content-Type") != std::string::npos) {
-                std::regex type_patten("Content-Type: ([^;]+)");
+            if (line.find("Content-Type") != std::string::npos) {
+                LOG_DEBUG("Found Content-Type line: %s", line.c_str());
+                std::regex type_patten("Content-Type: ([^;\\s]+)");
                 std::smatch type_match;
                 if (regex_search(line, type_match, type_patten) && type_match.size() >= 2) {
                     file_info.content_type = type_match[1].str();
+                    LOG_DEBUG("Found content type: %s", file_info.content_type.c_str());
+                } else {
+                    LOG_ERROR("Failed to extract content type from: %s", line.c_str());
                 }
             }
         }
 
         // 步骤4：解析文件二进制内容（从当前 pos 到下一个 boundary 之前）
         if (is_file && !field_name.empty()) {
+            LOG_DEBUG("Found file part: field_name=%s, filename=%s", 
+                     field_name.c_str(), file_info.filename.c_str());
+            
             // 找到下一个 boundary 的位置（内容结束位置）
-            size_t content_end = body_.find(boundary, pos);
-            if (content_end == std::string::npos) {
-                content_end = body_len; // 若未找到，取 body 末尾
+            size_t next_boundary_pos = body_.find(used_boundary, pos);
+            if (next_boundary_pos == std::string::npos) {
+                // 尝试查找备用边界格式
+                next_boundary_pos = body_.find(alt_boundary, pos);
+                if (next_boundary_pos == std::string::npos) {
+                    LOG_DEBUG("No next boundary found, using end of body");
+                    next_boundary_pos = body_len; // 若未找到，取 body 末尾
+                } else {
+                    LOG_DEBUG("Found next boundary (alt format) at position %zu", next_boundary_pos);
+                }
+            } else {
+                LOG_DEBUG("Found next boundary at position %zu", next_boundary_pos);
             }
+            
             // 提取二进制内容（注意：部分浏览器会在内容末尾加 CRLF，需去掉）
-            size_t content_len = content_end - pos;
-            if (content_len > 2 && body_.substr(content_end - 2, 2) == "\r\n") {
+            size_t content_len = next_boundary_pos - pos;
+            if (content_len > 2 && next_boundary_pos >= 2 && 
+                body_.substr(next_boundary_pos - 2, 2) == "\r\n") {
                 content_len -= 2; // 去掉末尾的 CRLF
+                LOG_DEBUG("Removed trailing CRLF from content");
             }
-            file_info.content = body_.substr(pos, content_len);
-            // 将文件信息存入 files_ 容器（key：表单字段名）
-            files_[field_name] = file_info;
-            LOG_DEBUG("Multipart file: field=%s, name=%s, size=%zu, type=%s",
-                      field_name.c_str(), file_info.filename.c_str(),
-                      file_info.content.size(), file_info.content_type.c_str());
+            
+            // 安全检查
+            if (pos + content_len <= body_len) {
+                file_info.content = body_.substr(pos, content_len);
+                // 将文件信息存入 files_ 容器（key：表单字段名）
+                files_[field_name] = file_info;
+                LOG_DEBUG("Successfully parsed file: field=%s, name=%s, size=%zu, type=%s",
+                        field_name.c_str(), file_info.filename.c_str(),
+                        file_info.content.size(), file_info.content_type.c_str());
+            } else {
+                LOG_ERROR("Content length calculation error: pos=%zu, content_len=%zu, body_len=%zu",
+                         pos, content_len, body_len);
+            }
+        } else {
+            LOG_DEBUG("Skipping non-file part or missing field name: is_file=%d, field_name=%s",
+                     is_file ? 1 : 0, field_name.c_str());
         }
 
         // 移动 pos 到下一个 boundary 位置，准备解析下一个块
-        pos = body_.find(boundary, pos);
-        if (pos == std::string::npos) {
+        size_t next_pos = body_.find(used_boundary, pos);
+        if (next_pos == std::string::npos) {
+            LOG_DEBUG("No more boundaries found, parsing complete");
             break;
         }
+        pos = next_pos;
     }
 }
 

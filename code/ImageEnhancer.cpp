@@ -16,12 +16,48 @@ ImageEnhancer::ImageEnhancer(const std::string& model_path) {
         session_options_.SetIntraOpNumThreads(2);  // 线程数：根据CPU核心数调整（如2/4）
         session_options_.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_BASIC);  // 基础图优化（加速推理）
         
-        // 3. 加载ONNX模型，创建会话
-        session_ = std::make_unique<Ort::Session>(env_, model_path.c_str(), session_options_);
-
+        // 3. 改进模型路径处理：尝试多个路径以提高鲁棒性
+        std::string actual_path = model_path;
+        bool model_loaded = false;
+        
+        // 尝试直接加载
+        try {
+            session_ = std::make_unique<Ort::Session>(env_, actual_path.c_str(), session_options_);
+            model_loaded = true;
+            std::cout << "[ImageEnhancer] Model loaded (direct path): " << actual_path << std::endl;
+        } catch (const Ort::Exception& e) {
+            std::cout << "[ImageEnhancer] Failed to load from " << actual_path << ": " << e.what() << std::endl;
+        }
+        
+        // 如果直接加载失败，尝试相对于可执行文件的路径
+        if (!model_loaded) {
+            actual_path = "./models/LPGPNet.onnx";
+            try {
+                session_ = std::make_unique<Ort::Session>(env_, actual_path.c_str(), session_options_);
+                model_loaded = true;
+                std::cout << "[ImageEnhancer] Model loaded (executable relative path): " << actual_path << std::endl;
+            } catch (const Ort::Exception& e) {
+                std::cout << "[ImageEnhancer] Failed to load from " << actual_path << ": " << e.what() << std::endl;
+            }
+        }
+        
+        // 如果上面都失败，尝试项目根目录的路径
+        if (!model_loaded) {
+            actual_path = "../models/LPGPNet.onnx";
+            try {
+                session_ = std::make_unique<Ort::Session>(env_, actual_path.c_str(), session_options_);
+                model_loaded = true;
+                std::cout << "[ImageEnhancer] Model loaded (project root path): " << actual_path << std::endl;
+            } catch (const Ort::Exception& e) {
+                std::cout << "[ImageEnhancer] Failed to load from " << actual_path << ": " << e.what() << std::endl;
+                throw std::runtime_error("[ImageEnhancer] Model init failed: Load model from " + model_path + 
+                                         " failed. Tried multiple paths but none worked.");
+            }
+        }
+        
         // 4. 初始化模型关键信息（输入输出节点、尺寸等）
         InitModelInfo();
-        std::cout << "[ImageEnhancer] Model loaded: " << model_path << std::endl;
+        std::cout << "[ImageEnhancer] Model loaded: " << actual_path << std::endl;
         std::cout << "[ImageEnhancer] Input size: " << input_width_ << "x" << input_height_ 
                   << ", Channels: " << input_channels_ << std::endl;
     } catch (const Ort::Exception& e) {
@@ -46,7 +82,10 @@ void ImageEnhancer::InitModelInfo() {
         if (!input_node_name_ptr) {
             throw std::runtime_error("Failed to get input node name");
         }
-        input_node_names_.emplace_back(input_node_name_ptr.get());  // 存储节点名字符串指针
+        
+        // 修改：存储字符串，而不是存储指针
+        input_node_names_.push_back(std::string(input_node_name_ptr.get()));
+        std::cout << "[ImageEnhancer] Input node name: " << input_node_names_[0] << std::endl;
 
         // 1.2 获取输入形状（通过 TensorTypeAndShapeInfo）
         Ort::TypeInfo input_type_info = session_->GetInputTypeInfo(0);
@@ -73,7 +112,10 @@ void ImageEnhancer::InitModelInfo() {
         if (!output_node_name_ptr) {
             throw std::runtime_error("Failed to get output node name");
         }
-        output_node_names_.emplace_back(output_node_name_ptr.get());  // 存储节点名字符串指针
+        
+        // 修改：存储字符串，而不是存储指针
+        output_node_names_.push_back(std::string(output_node_name_ptr.get()));
+        std::cout << "[ImageEnhancer] Output node name: " << output_node_names_[0] << std::endl;
 
     } catch (const Ort::Exception& e) {
         throw std::runtime_error("[ImageEnhancer] Init model info failed: " + std::string(e.what()));
@@ -154,18 +196,30 @@ std::vector<float> ImageEnhancer::Inference(const std::vector<float>& input_tens
             throw std::runtime_error("Create input tensor failed");
         }
 
-        // 4. 执行推理
+        // 4. 创建临时指针向量，从字符串向量获取原始指针
+        std::vector<const char*> input_names_ptr;
+        std::vector<const char*> output_names_ptr;
+        
+        for (const auto& name : input_node_names_) {
+            input_names_ptr.push_back(name.c_str());
+        }
+        
+        for (const auto& name : output_node_names_) {
+            output_names_ptr.push_back(name.c_str());
+        }
+
+        // 5. 执行推理
         Ort::RunOptions run_options;  // 默认配置（无特殊参数）
         std::vector<Ort::Value> output_ort_tensors = session_->Run(
             run_options,
-            input_node_names_.data(),
+            input_names_ptr.data(),  // 使用临时指针向量
             &input_ort_tensor,
-            input_node_names_.size(),
-            output_node_names_.data(),
-            output_node_names_.size()
+            input_names_ptr.size(),
+            output_names_ptr.data(),  // 使用临时指针向量
+            output_names_ptr.size()
         );
 
-        // 5. 校验输出有效性
+        // 6. 校验输出有效性
         if (output_ort_tensors.empty()) {
             throw std::runtime_error("Inference got no output");
         }
@@ -174,7 +228,7 @@ std::vector<float> ImageEnhancer::Inference(const std::vector<float>& input_tens
             throw std::runtime_error("Output is not a tensor");
         }
 
-        // 6. 提取输出数据
+        // 7. 提取输出数据
         float* output_data = output_ort_tensor.GetTensorMutableData<float>();
         if (output_data == nullptr) {
             throw std::runtime_error("Get output data failed");

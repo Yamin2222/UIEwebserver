@@ -18,12 +18,12 @@ WebServer::WebServer(
             const char* modelPath)
     : port_(port), openLinger_(OptLinger), timeoutMS_(timeoutMS), isClose_(false),
       timer_(new HeapTimer()), threadpool_(new ThreadPool(threadNum)), epoller_(new Epoller()),
-      modelPath_(modelPath ? modelPath : "./models/LPGPNet.onnx")  // 初始化模型路径（默认值兜底）
+      modelPath_(modelPath ? modelPath : "models/LPGPNet.onnx")  // 初始化模型路径（默认值兜底）
 {
     // 新增：校验模型路径有效性（避免空路径）
     if (modelPath_.empty()) {
-        LOG_ERROR("ONNX model path is empty! Use default path: ./models/LPGPNet.onnx");
-        modelPath_ = "./models/LPGPNet.onnx";  // 空路径时用默认值
+        LOG_ERROR("ONNX model path is empty! Use default path: models/LPGPNet.onnx");
+        modelPath_ = "models/LPGPNet.onnx";  // 空路径时用默认值
     }
     // 确定资源目录（优先使用编译期指定的 RESOURCE_DIR；其次根据运行目录智能回退）
     {
